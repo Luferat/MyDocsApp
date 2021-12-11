@@ -1,0 +1,75 @@
+{
+    "app-settings": {
+        "name": "My Docs App",
+        "title": "My Docs App",
+        "slogan": "",
+        "favicon": "assets/img/logo_512.png",
+        "logo": "assets/img/logo_128.png",
+        "bgcolor": "#021c29",
+        "bgimagem": "../assets/img/background_01.jpg"
+    },
+    "main-menu": [
+            {
+                "name": "Início",
+                "href": "home",
+                "title": "Início",
+                "icon": "fas fa-fw fa-home"
+            },
+            {
+                "name": "Gerenciar",
+                "href": "manager",
+                "title": "Gerenciar todos os documentos",
+                "icon": "fas fa-fw fa-file"
+            },
+            {
+                "name": "Enviar",
+                "href": "send",
+                "title": "Enviar novo documento",
+                "icon": "fas fa-fw fa-file-upload"
+            },
+            {
+                "name": "Contatos",
+                "href": "contacts",
+                "title": "Faça contato",
+                "icon": "fas fa-fw fa-comments"
+            },
+            {
+                "name": "Sobre",
+                "href": "about",
+                "title": "Sobre o aplicativo",
+                "icon": "fas fa-fw fa-info-circle"
+            },
+            {
+                "name": "Configuração",
+                "href": "config",
+                "title": "Configuração do aplicativo",
+                "icon": "fas fa-fw fa-cog"
+            }
+        ],
+        "social-list": {
+            "github": {
+                "name": "GitHub",
+                "title": "Meu GitHub",
+                "url": "https://github.com/Luferat",
+                "icon": "fab fa-fw fa-github-square"
+            },
+            "linkedin": {
+                "name": "LinkedIn",
+                "title": "Meu LinkedIn",
+                "url": "https://linkedin.com/Luferat",
+                "icon": "fab fa-fw fa-linkedin"
+            },
+            "instagram": {
+                "name": "Instagram",
+                "title": "Meu Instagram",
+                "url": "https://instagram.com/Luferat",
+                "icon": "fab fa-fw fa-instagram-square"
+            },
+            "facebook": {
+                "name": "Facebook",
+                "title": "Meu Facebook",
+                "url": "https://facebook.com/Luferat",
+                "icon": "fab fa-fw fa-facebook-square"
+            }
+        }
+    }

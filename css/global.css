@@ -1,7 +1,207 @@
+/* Variáveis de uso geral
+Altere os valores conforme seu layout.
+*/
+
+:root {
+    /* Largura mínima do app para viewport de 320px */
+    --min-width: 280px;
+    /* Largura máxima do app para viewport de 1080px */
+    --max-width: 1024px;
+    /* Cor do fundo das páginas */
+    --bg-color: #021c29;
+    /* Imagem de fundo das páginas */
+    --bg-image: url('../assets/img/background_01.jpg');
+}
+
 /* Reset do CSS
 Faz com que a página apareça sempre igual em qualquer navegador moderno.
 */
 
+* {
+    box-sizing: border-box;
+    outline: 0;
+    transition: .2s;
+}
+
+html, body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+html, body, header, footer, nav, main, article, aside, p, h1, h2, h3, h4, h5, h6, blockquote {
+    display: block;
+    width: 100%;
+}
+
+p, h1, h2, h3, h4, h5, h6, blockquote {
+    margin: 0;
+    padding: .9rem 0;
+}
+
+blockquote {
+    padding-left: 2rem;
+}
+
+a {
+    color: steelblue;
+    text-decoration: none;
+}
+
+a:hover {
+    color: orangered;
+    text-decoration: underline;
+}
+
+/* Definições do fundo
+"background-color" e "background-image" podem ser definidos dinâmicamente em futuras versões.
+*/
+
 body {
-    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--bg-color);
+    background-image: var(--bg-image);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Quadro principal --> .wrap
+Controla a exibição de todos os blocos do app, principalmente "sticky footer".
+*/
+
+.wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+div.header, div.nav, div.main, div.footer {
+    min-width: var(--min-width);
+    max-width: var(--max-width);
+    margin: auto;
+}
+
+/* Sticky footer */
+
+main {
+    flex-grow: 1;
+}
+
+/* Cabeçalho <header> */
+
+.wrap>header {
+    background: black;
+}
+
+div.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+div.header img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: .5rem;
+}
+
+div.header h1 {
+    font-family: monospace;
+    padding: 0 .5rem;
+    font-size: 1.8rem;
+    color: black;
+    -webkit-text-stroke: 1px #ffffff;
+}
+
+#menu-toggle {
+    margin-left: auto;
+    padding: .5rem;
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* Menu principal */
+
+.wrap>nav {
+    display: none;
+}
+
+div.nav {
+    min-width: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1000;
+    background: #044768;
+    display: flex;
+    flex-direction: column;
+    border-bottom-left-radius: .4rem;
+    box-shadow: -4px 4px 4px 1px rgba(255,255,255,0.3);
+}
+
+div.nav a {
+    display: block;
+    padding: 1rem 2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+
+div.nav a:last-child {
+    border-bottom-left-radius: .4rem;
+}
+
+div.nav a:hover {
+    color: #044768;
+    background: #ffffff;
+    text-decoration: none;
+}
+
+div.nav a i {
+    font-size: 1.2rem;
+    margin-right: .65rem;
+}
+
+@media (min-width: 768px) {
+
+    #menu-toggle {
+        display: none;
+    }
+
+    .wrap>nav {
+        display: block;
+        background: #044768;
+    }
+
+    div.nav {
+        width: 100%;
+        position: inherit;
+        z-index: auto;
+        display: flex;
+        flex-direction: row;
+        border-radius: 0;
+        border: none;
+        justify-content: flex-end;
+        box-shadow: none;
+    }
+
+    div.nav a {
+        padding: 1rem;
+    }
+
+    div.nav a:first-child {
+        margin-right: auto;
+    }
+
+    div.nav a:last-child {
+        border-radius: 0;
+    }
 }
