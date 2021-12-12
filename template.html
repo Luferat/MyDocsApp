@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="shortcut icon" href="assets/img/logo_512.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style id="page-css">/* Folha de estilos da página */</style>
     <title>My.Docs.App</title>
 </head>
 
@@ -28,22 +29,22 @@
         <nav>
 
             <div class="nav">
-                <a href="#index" title="Página incial">
+                <a href="home" title="Página incial">
                     <i class="fas fa-home fa-fw"></i><span>Início</span>
                 </a>
-                <a href="#manager" title="Gerenciar documentos">
+                <a href="manager" title="Gerenciar documentos">
                     <i class="fas fa-file-alt fa-fw"></i><span>Gerenciar</span>
                 </a>
-                <a href="#send" title="Enviar novo documento">
+                <a href="send" title="Enviar novo documento">
                     <i class="fas fa-file-upload fa-fw"></i><span>Enviar</span>
                 </a>
-                <a href="#contacts" title="Faça contato">
+                <a href="contacts" title="Faça contato">
                     <i class="fas fa-comments fa-fw"></i><span>Contatos</span>
                 </a>
-                <a href="#about" title="Sobre o App">
+                <a href="about" title="Sobre o App">
                     <i class="fas fa-info-circle fa-fw"></i><span>Sobre</span>
                 </a>
-                <a href="#profile" title="Seu perfil">
+                <a href="profile" title="Seu perfil">
                     <i class="fas fa-user fa-fw"></i><span>Perfil</span>
                 </a>
             </div>
@@ -52,13 +53,7 @@
 
         <main>
 
-            <div class="main">
-
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit quae maxime aliquam, consequuntur dolores provident. Error dicta maxime alias molestiae, qui quo, numquam inventore quas voluptatem dolorem facere, nemo fugit.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quasi quos nobis ab, nemo amet laudantium similique repudiandae assumenda tempora dolorem placeat veniam numquam eaque provident a unde iusto asperiores.</p>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In numquam aliquam iusto nam iure est corporis facilis distinctio, libero voluptatum nesciunt fuga. Iusto pariatur voluptates maxime mollitia minima? Totam, laboriosam?</p>
-
-            </div>
+            <div class="main" id="content"></div>
 
         </main>
 
@@ -67,7 +62,7 @@
             <div class="footer">
 
                 <div class="footer-top">
-                    <a href="index" title="Página incial"><i class="fas fa-home fa-fw"></i></a>
+                    <a href="home" title="Página incial"><i class="fas fa-home fa-fw"></i></a>
                     <div class="license">
                         <i class="fab fa-creative-commons fa-fw"></i> 2021 André Luferat
                     </div>
@@ -101,7 +96,7 @@
                         <a href="contacts" title="Faça contato">
                             <i class="fas fa-comments fa-fw"></i><span>Contatos</span>
                         </a>
-                        <a href="contacts" title="Políticas de privacidade">
+                        <a href="privacity" title="Políticas de privacidade">
                             <i class="fas fa-lock fa-fw"></i><span>Privacidade</span>
                         </a>
                     </div>
@@ -114,7 +109,7 @@
 
     </div>
 
-    <!-- <script src="js/global.js"></script> -->
+    <script src="js/global.js"></script>
 
 </body>
 
