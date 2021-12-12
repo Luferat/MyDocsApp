@@ -9,6 +9,13 @@
         "bgimagem": "../assets/img/background_01.jpg",
         "license": "<i class=\"fab fa-creative-commons fa-fw\"></i> 2021 André Luferat"
     },
+    "meta": {
+        "description": "Aplicativo de armazenamento e gestão de documentos.",
+        "keywords": "documentos, downloads, uploads, gestão, gerenciamento, texto, pdf, planilha",
+        "author": "André Luferat - http://www.luferat.net/",
+        "application-name": "My.Docs.App",
+        "generator": "Visual Studio Code"
+    },
     "main-menu": [
             {
                 "name": "Início",
