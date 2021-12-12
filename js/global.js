@@ -30,6 +30,8 @@ function menuClick() {
         showMenu();
 
     }
+
+    return false;
 }
 
 // Oculta o menu, troca ícone e o title do botão
