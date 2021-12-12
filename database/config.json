@@ -6,7 +6,8 @@
         "favicon": "assets/img/logo_512.png",
         "logo": "assets/img/logo_128.png",
         "bgcolor": "#021c29",
-        "bgimagem": "../assets/img/background_01.jpg"
+        "bgimagem": "../assets/img/background_01.jpg",
+        "license": "<i class=\"fab fa-creative-commons fa-fw\"></i> 2021 André Luferat"
     },
     "main-menu": [
             {

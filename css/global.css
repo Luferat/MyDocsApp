@@ -97,10 +97,11 @@ main {
 /* Cabeçalho <header> */
 
 .wrap>header {
-    background: black;
+    background: rgba(0,0,0,.5);
 }
 
 div.header {
+    background: #000;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -128,10 +129,10 @@ div.header h1 {
     color: white;
 }
 
-/* Menu principal */
+/* Menu principal <nav> */
 
 .wrap>nav {
-    display: none;
+    display: block;
 }
 
 div.nav {
@@ -143,7 +144,7 @@ div.nav {
     display: flex;
     flex-direction: column;
     border-bottom-left-radius: .4rem;
-    box-shadow: -4px 4px 4px 1px rgba(255,255,255,0.3);
+    box-shadow: -4px 4px 4px 1px rgba(255, 255, 255, 0.3);
 }
 
 div.nav a {
@@ -170,6 +171,8 @@ div.nav a i {
     margin-right: .65rem;
 }
 
+/* Menu principal em mídias mais largas */
+
 @media (min-width: 768px) {
 
     #menu-toggle {
@@ -178,7 +181,7 @@ div.nav a i {
 
     .wrap>nav {
         display: block;
-        background: #044768;
+        background: #04476870;
     }
 
     div.nav {
@@ -204,4 +207,80 @@ div.nav a i {
     div.nav a:last-child {
         border-radius: 0;
     }
+}
+
+/* Rodapé <footer> */
+
+.wrap>footer {
+    background: rgba(0,0,0,.5);
+}
+
+.footer-top {
+    background: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    border-bottom: 1px dotted grey;
+}
+
+.footer-top a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: .5rem;
+    font-size: 1.3rem;
+}
+
+.footer-top a:hover {
+    color: #000;
+    background: #fff;
+}
+
+.footer-top .license {
+    font-size: .9rem;
+    text-align: center;
+}
+
+.footer-bottom {
+    background: #000;
+    display: flex;
+    justify-content: space-around;
+    font-size: .8rem;
+}
+
+.footer-bottom div {
+    display: flex;
+    flex-direction: column;
+    margin: .25rem 0 .5rem 0;
+}
+
+.footer-bottom a {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding: .5rem;
+    border-radius: .2rem;
+    margin-top: .2rem;
+}
+
+.footer-bottom a:hover {
+    color: #000;
+    background: #fff;
+    text-decoration: none;
+}
+
+.footer-bottom a i {
+    font-size: 150%;
+    margin-right: .5rem
+}
+
+/* Conteúdo <main> */
+.wrap>main {
+    background: rgba(255, 255, 255, .2);
+}
+
+div.main {
+    position: relative;
+    height: 100%;
+    background: #fff;
 }
