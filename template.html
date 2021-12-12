@@ -6,9 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/global.css">
-    <link rel="shortcut icon" href="assets/img/logo_512.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>My.Docs.App</title>
 </head>
 
 <body>
@@ -19,35 +17,18 @@
 
         <header>
             <div class="header">
-                <a href="home" alt="Página incial"><img src="assets/img/logo_64.png" alt="My.Docs.App Logo"></a>
-                <h1>My.Docs.App</h1>
-                <a href="#menu" id="menu-toggle" title="Abre menu"><i class="fas fa-bars fa-fw"></i></a>
+                <a id="logo" href="home" alt="Página incial"></a>
+                <h1 id="title"></h1>
+                <a id="menu-toggle" href="#menu" title="Abre menu"><i class="fas fa-bars fa-fw"></i></a>
             </div>
         </header>
 
-        <nav>
-
+        <nav id="menu">
             <div class="nav">
-                <a href="#index" title="Página incial">
-                    <i class="fas fa-home fa-fw"></i><span>Início</span>
-                </a>
-                <a href="#manager" title="Gerenciar documentos">
-                    <i class="fas fa-file-alt fa-fw"></i><span>Gerenciar</span>
-                </a>
-                <a href="#send" title="Enviar novo documento">
-                    <i class="fas fa-file-upload fa-fw"></i><span>Enviar</span>
-                </a>
-                <a href="#contacts" title="Faça contato">
-                    <i class="fas fa-comments fa-fw"></i><span>Contatos</span>
-                </a>
-                <a href="#about" title="Sobre o App">
-                    <i class="fas fa-info-circle fa-fw"></i><span>Sobre</span>
-                </a>
                 <a href="#profile" title="Seu perfil">
                     <i class="fas fa-user fa-fw"></i><span>Perfil</span>
                 </a>
             </div>
-
         </nav>
 
         <main>
@@ -70,20 +51,7 @@
 
                 <div class="footer-bottom">
 
-                    <nav class="social">
-                        <a href="https://github.com/Luferat" target="_blank" title="Meu GitHub">
-                            <i class="fab fa-github-square fa-fw"></i><span>GitHub</span>
-                        </a>
-                        <a href="https://linkedin.com/Luferat" target="_blank" title="Meu LinkedIn">
-                            <i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span>
-                        </a>
-                        <a href="https://facebook.com/Luferat" target="_blank" title="Meu Facebook">
-                            <i class="fab fa-facebook-square fa-fw"></i><span>Facebook</span>
-                        </a>
-                        <a href="https://instagram.com/Luferat" target="_blank" title="Meu Instagram">
-                            <i class="fab fa-instagram-square fa-fw"></i><span>Instagram</span>
-                        </a>
-                    </nav>
+                    <nav class="social"></nav>
 
                     <nav class="tools">
                         <a href="about" title="Sobre o App">

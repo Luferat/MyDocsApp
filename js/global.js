@@ -1,11 +1,15 @@
 // Executa app quando documento estiver pronto
-// window.addEventListener('load', () => { }, false);
+// window.addEventListener('load', runApp, false);
+
+var pageTitle = 'Template';
+
+configApp('../database/config.json');
 
 // Seleciona botão do menu
 var menuToggle = el('#menu-toggle');
 
 // Seleciona menu
-var menu = el('.wrap>nav');
+var menu = el('#menu');
 
 // Detecta mudanças na resolução
 changeRes();
@@ -65,4 +69,50 @@ function changeRes(event) {
 // Atalho para seleção de elementos
 function el(selector) {
     return document.querySelector(selector);
+}
+
+function configApp(configFile) {
+    fetch(configFile)
+        .then(function (response) { return response.json(); })
+        .then(function (config) {
+            setTemplate(config.app, config.meta, pageTitle);
+            setMainMenu(config.menu);
+            setSocial(config.social);
+        });
+}
+
+function setTemplate(app, meta, pageTitle = '') {
+    var header = metaTags = '';
+    if (pageTitle == '') header += `<title>${app.title}</title>`;
+    else header += `<title>${app.title} - ${pageTitle}</title>`;
+    for (let name in meta) metaTags += `<meta name="${name}" content="${meta[name]}">\n`;
+    header += `
+    ${metaTags}
+    <link rel="shortcut icon" href="${app.favicon}" type="image/png">
+    <style>
+        body {
+            background-color: ${app.bgcolor};
+            background-image: url('${app.bgimagem}');
+        }
+    </style>`;
+    el('head').innerHTML += header;
+    el('#title').innerHTML += `${app.name}`;
+    el('#logo').innerHTML = `<img src="${app.logo}" alt="${app.name} Logo">`;
+}
+
+function setMainMenu(menu) {
+    var mainMenu = '';
+    menu.forEach(item => {
+        mainMenu += `<a href="${item.href}" title="${item.title}"><i class="${item.icon}"></i><span>${item.name}</span></a>\n`;
+    });
+    var userTool = el('div.nav').innerHTML;
+    el('div.nav').innerHTML = mainMenu + userTool;
+}
+
+function setSocial(social) {
+    var socialList = '';
+    social.forEach(item => {
+        socialList += `<a href="${item.url}" target="_blank" title="${item.title}"><i class="${item.icon}"></i><span>${item.name}</span></a>\n`;
+    });
+    el('nav.social').innerHTML = socialList;
 }

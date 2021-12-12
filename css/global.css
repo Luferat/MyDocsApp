@@ -62,8 +62,8 @@ a:hover {
 */
 
 body {
-    background-color: var(--bg-color);
-    background-image: var(--bg-image);
+    /* background-color: var(--bg-color);
+    background-image: var(--bg-image); */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;

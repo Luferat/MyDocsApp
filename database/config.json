@@ -1,75 +1,81 @@
 {
-    "app-settings": {
-        "name": "My Docs App",
-        "title": "My Docs App",
-        "slogan": "",
+    "app": {
+        "name": "My.Docs.App",
+        "title": "My.Docs.App",
         "favicon": "assets/img/logo_512.png",
         "logo": "assets/img/logo_128.png",
         "bgcolor": "#021c29",
         "bgimagem": "../assets/img/background_01.jpg"
     },
-    "main-menu": [
-            {
-                "name": "Início",
-                "href": "home",
-                "title": "Início",
-                "icon": "fas fa-fw fa-home"
-            },
-            {
-                "name": "Gerenciar",
-                "href": "manager",
-                "title": "Gerenciar todos os documentos",
-                "icon": "fas fa-fw fa-file"
-            },
-            {
-                "name": "Enviar",
-                "href": "send",
-                "title": "Enviar novo documento",
-                "icon": "fas fa-fw fa-file-upload"
-            },
-            {
-                "name": "Contatos",
-                "href": "contacts",
-                "title": "Faça contato",
-                "icon": "fas fa-fw fa-comments"
-            },
-            {
-                "name": "Sobre",
-                "href": "about",
-                "title": "Sobre o aplicativo",
-                "icon": "fas fa-fw fa-info-circle"
-            },
-            {
-                "name": "Configuração",
-                "href": "config",
-                "title": "Configuração do aplicativo",
-                "icon": "fas fa-fw fa-cog"
-            }
-        ],
-        "social-list": {
-            "github": {
-                "name": "GitHub",
-                "title": "Meu GitHub",
-                "url": "https://github.com/Luferat",
-                "icon": "fab fa-fw fa-github-square"
-            },
-            "linkedin": {
-                "name": "LinkedIn",
-                "title": "Meu LinkedIn",
-                "url": "https://linkedin.com/Luferat",
-                "icon": "fab fa-fw fa-linkedin"
-            },
-            "instagram": {
-                "name": "Instagram",
-                "title": "Meu Instagram",
-                "url": "https://instagram.com/Luferat",
-                "icon": "fab fa-fw fa-instagram-square"
-            },
-            "facebook": {
-                "name": "Facebook",
-                "title": "Meu Facebook",
-                "url": "https://facebook.com/Luferat",
-                "icon": "fab fa-fw fa-facebook-square"
-            }
+    "meta": {
+        "description": "Aplicativo de armazenamento e gestão de documentos.",
+        "keywords": "documentos, downloads, uploads, gestão, gerenciamento, texto, pdf, planilha",
+        "author": "André Luferat - http://www.luferat.net/",
+        "application-name": "My.Docs.App",
+        "generator": "Visual Studio Code"
+    },
+    "menu": [
+        {
+            "name": "Início",
+            "href": "home",
+            "title": "Início",
+            "icon": "fas fa-fw fa-home"
+        },
+        {
+            "name": "Gerenciar",
+            "href": "manager",
+            "title": "Gerenciar todos os documentos",
+            "icon": "fas fa-fw fa-file"
+        },
+        {
+            "name": "Enviar",
+            "href": "send",
+            "title": "Enviar novo documento",
+            "icon": "fas fa-fw fa-file-upload"
+        },
+        {
+            "name": "Contatos",
+            "href": "contacts",
+            "title": "Faça contato",
+            "icon": "fas fa-fw fa-comments"
+        },
+        {
+            "name": "Sobre",
+            "href": "about",
+            "title": "Sobre o aplicativo",
+            "icon": "fas fa-fw fa-info-circle"
+        },
+        {
+            "name": "Configuração",
+            "href": "config",
+            "title": "Configuração do aplicativo",
+            "icon": "fas fa-fw fa-cog"
         }
-    }
+    ],
+    "social": [
+        {
+            "name": "GitHub",
+            "title": "Meu GitHub",
+            "url": "https://github.com/Luferat",
+            "icon": "fab fa-fw fa-github-square"
+        },
+        {
+            "name": "LinkedIn",
+            "title": "Meu LinkedIn",
+            "url": "https://linkedin.com/Luferat",
+            "icon": "fab fa-fw fa-linkedin"
+        },
+        {
+            "name": "Instagram",
+            "title": "Meu Instagram",
+            "url": "https://instagram.com/Luferat",
+            "icon": "fab fa-fw fa-instagram-square"
+        },
+        {
+            "name": "Facebook",
+            "title": "Meu Facebook",
+            "url": "https://facebook.com/Luferat",
+            "icon": "fab fa-fw fa-facebook-square"
+        }
+    ]
+}
