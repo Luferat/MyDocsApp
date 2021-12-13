@@ -130,18 +130,26 @@ function routerLink(e) {
  * 
  * Mesmo que não use 'index.css' e/ou 'index.js', estes arquivos devem existir sem conteúdo.
  */
-function loadPage(page, title = '') {
+function loadPage(pagePath) {
 
-    // Ajusta tag <title>
-    setTitle(title);
+    // Dividir a rota em partes para obter variáveis
+    var route = pagePath.split('?');
 
-    // Caminho dos objetos da página
-    const pagePath = `../pages/${page}/index`;
+    // Objeto '{}' com caminhos da página
+    var page = {
+        css: `pages/${route[0]}/index.css`,   // Caminho para CSS da página
+        html: `pages/${route[0]}/index.html`, // Caminho para HTMl da página
+        js: `pages/${route[0]}/index.js`,     // Caminho para JavaScript da página
+    };
 
     // Carrega cada objeto (arquivo) da página hierarquicamente
-    if (getFile(`${pagePath}.css`, '#page-css'))
-        if (getFile(`${pagePath}.html`, '#content'))
-            getFile(`${pagePath}.js`);
+    if (getFile(page.css, '#page-css'))
+        if (getFile(page.html, '#content')) {
+            getFile(page.js);
+
+            // Atualiza endereço da página no navegador
+            window.history.replaceState('', '', pagePath);
+        }
 
     // Sai sem fazer mais nada
     return false;
