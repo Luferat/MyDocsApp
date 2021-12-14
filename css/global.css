@@ -21,11 +21,16 @@
     /* Remover bordas de elementos selecionados */
     outline: none;
     /* Aplica atraso em efeitos de transição */
-    transition: .2s;
+    transition: .1s;
+}
+
+html, body, header, footer, nav, main, article, aside, p, h1, h2, h3, h4, h5, h6, blockquote {
+    display: block;
+    width: 100%;
 }
 
 body, html {
-    /* Força posicionamento relativo para aplicar width e height */
+    /* Força posicionamento relativo. Permite aplicar height em blocos. */
     position: relative;
     /* Remove margem e enchimento */
     padding: 0;
@@ -49,7 +54,7 @@ blockquote {
 
 a {
     color: steelblue;
-    text-decoration: stroke;
+    text-decoration: none;
 }
 
 a:hover {
@@ -67,17 +72,27 @@ body {
     background-size: cover;
 }
 
-/* Quadro principal e estrutura */
-.wrap {}
+/* Quadro principal <div.wrap>
+ * Controla a exibição de todos os blocos do app, principalmente "sticky footer".
+ */
 
-div.header, div.nav {
-    width: 100%;
+.wrap {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+div.header, div.nav, div.main, div.footer {
     min-width: var(--min-width);
     max-width: var(--max-width);
     margin: auto;
 }
 
-/* Cabeçalho */
+main {
+    flex-grow: 1;
+}
+
+/* Cabeçalho <header> */
 
 .wrap>header {
     background: rgba(0, 0, 0, .8);
@@ -109,46 +124,167 @@ div.header h1 {
     color: white;
 }
 
-/* Responsividade do cabeçalho */
-
-@media (min-width: 768px) {
-    #menu-toggle {
-        display: none;
-    }
-}
+/* Responsividade do cabeçalho
+ * Para resoluções de 576px ou mais...
+ */
 
 @media (min-width: 576px) {
+
+    /* Aumenta tamanho da fonte do título em telas maiores */
     div.header h1 {
         font-size: 2rem;
     }
 }
 
-/* Menu principal */
+/* Responsividade do cabeçalho
+ * Para resoluções de 768px ou mais...
+ */
 
-.wrap>nav {}
+@media (min-width: 768px) {
+
+    /* Oculta botão do menu em telas maiores */
+    #menu-toggle {
+        display: none;
+    }
+}
+
+/* Menu principal <nav> */
+
+.wrap>nav {
+    display: block;
+}
 
 div.nav {
-    background: rgb(33, 66, 93);
+    background: #044768;
     position: absolute;
+    right: 0;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    box-shadow: -4px 6px 5px 0px #000;
+    border-bottom-left-radius: .35rem;
 }
 
 div.nav a {
-    display: inline-block;
+    padding: 1rem 2rem;
     color: white;
-    text-decoration: none;
-    padding: .75rem;
     display: flex;
     align-items: center;
 }
 
+div.nav a:last-child {
+    border-bottom-left-radius: .35rem;
+}
+
 div.nav a:hover {
-    background: white;
-    color: rgb(33, 66, 93);
+    color: #044768;
+    background: #ffffff;
+    text-decoration: none;
 }
 
 div.nav a i {
     font-size: 1.3rem;
     margin-right: .65rem;
+}
+
+/* Modifica o menu em resoluções maiores */
+
+@media (min-width: 768px) {
+
+    .wrap>nav {
+        background: #04476891;
+    }
+
+    div.nav {
+        position: inherit;
+        right: auto;
+        z-index: auto;
+        flex-direction: row;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        justify-content: flex-end;
+    }
+
+    div.nav a:first-child {
+        margin-right: auto;
+    }
+
+    div.nav a:last-child {
+        border-radius: 0;
+    }
+
+    div.nav a {
+        padding: 1rem;
+    }
+}
+
+/* Bloco de conteúdo <main> */
+
+div.main {
+    position: relative;
+    height: 100%;
+    background: white;
+
+}
+
+/* Rodapé <footer> */
+
+.wrap>footer {
+    background: rgba(0, 0, 0, .7);
+}
+
+div.footer-top {
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    border-top: 1px dotted grey;
+    border-bottom: 1px dotted grey;
+}
+
+div.footer-top a {
+    font-size: 1.5rem;
+    padding: .25rem;
+    color: white;
+}
+
+div.footer-top a:hover {
+    background: white;
+    color: black;
+}
+
+div.footer-bottom {
+    background: black;
+    display: flex;
+    justify-content: space-around;
+    padding-top: .75rem;
+    padding-bottom: 1rem;
+}
+
+div.footer-bottom div {
+    display: flex;
+    flex-direction: column;
+}
+
+div.footer-bottom a {
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-top: .25rem;
+}
+
+div.footer-bottom a:hover {
+    color: black;
+    background: white;
+    text-decoration: none;
+    border-radius: .25rem;
+}
+
+div.footer-bottom a i {
+    font-size: 1.2rem;
+    margin-right: .25rem;
 }
