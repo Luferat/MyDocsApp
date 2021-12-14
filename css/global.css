@@ -1,9 +1,8 @@
-/* Reset do CSS
-Faz com que a página apareça sempre igual em qualquer navegador moderno.
-*/
+/* Variáveis
+ * Define algumas configurações iniciais para o app.
+ */
 
 :root {
-    /* Variáveis */
     --font-family: sans-serif;
     --font-size: 16px;
     --bg-color: rgb(0, 14, 36);
@@ -11,6 +10,10 @@ Faz com que a página apareça sempre igual em qualquer navegador moderno.
     --max-width: 1024px;
     --min-width: 280px;
 }
+
+/* Reset do CSS
+ * Faz com que a página apareça sempre igual em qualquer navegador moderno.
+ */
 
 * {
     /* Margin e padding não interferem em width e height */
@@ -64,10 +67,88 @@ body {
     background-size: cover;
 }
 
-/* Quadro principal */
-.wrap {
+/* Quadro principal e estrutura */
+.wrap {}
+
+div.header, div.nav {
     width: 100%;
     min-width: var(--min-width);
     max-width: var(--max-width);
     margin: auto;
+}
+
+/* Cabeçalho */
+
+.wrap>header {
+    background: rgba(0, 0, 0, .8);
+}
+
+div.header {
+    display: flex;
+    align-items: center;
+}
+
+div.header img {
+    display: block;
+    margin: .25rem .5rem .25rem .25rem;
+    width: 45px;
+    height: 45px;
+}
+
+div.header h1 {
+    -webkit-text-stroke: 1px white;
+    color: var(--bg-color);
+    padding: 0;
+    font-size: 1.5rem;
+}
+
+#menu-toggle {
+    margin-left: auto;
+    padding: .8rem;
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* Responsividade do cabeçalho */
+
+@media (min-width: 768px) {
+    #menu-toggle {
+        display: none;
+    }
+}
+
+@media (min-width: 576px) {
+    div.header h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Menu principal */
+
+.wrap>nav {}
+
+div.nav {
+    background: rgb(33, 66, 93);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+div.nav a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: .75rem;
+    display: flex;
+    align-items: center;
+}
+
+div.nav a:hover {
+    background: white;
+    color: rgb(33, 66, 93);
+}
+
+div.nav a i {
+    font-size: 1.3rem;
+    margin-right: .65rem;
 }
