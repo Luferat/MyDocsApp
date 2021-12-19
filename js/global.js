@@ -24,17 +24,17 @@ fetch('../database/config.json')
         // Carrega a página inicial do app
         loadPage('home');
 
-        // Monitora cliques no botão do menu
+        // Monitora cliques no botão do menu e redireciona para 'menuClick()'
         menuToggle.addEventListener('click', menuClick);
 
-        // Detecta mudanças na resolução
+        // Detecta mudanças na resolução e redireciona para 'changeRes()'
         changeRes();
         window.addEventListener('resize', changeRes)
 
-        // Monitora cliques nas tags <a>
-        var link = document.querySelectorAll('a');
-        for (var i = 0; i < link.length; i++) {
-            link[i].addEventListener('click', routerLink);
+        // Monitora cliques nas tags <a> e redireciona para 'routerLink()'
+        var links = els('a');
+        for (var i = 0; i < links.length; i++) {
+            links[i].addEventListener('click', routerLink);
         }
 
         // Sai sem fazer mais nada
@@ -45,10 +45,10 @@ fetch('../database/config.json')
 // Ação do click no botão do menu
 function menuClick() {
 
-    // Se o menu está visível, oculta ele
+    // Se o menu está visível (display="block"), oculta ele
     if (window.getComputedStyle(menu, null).display === 'block') hideMenu();
 
-    // Se o menu está oculto, mostra ele
+    // Se o menu está oculto (display="none"), mostra ele
     else showMenu();
 
     // Sai sem fazer mais nada
@@ -88,9 +88,14 @@ function changeRes(event) {
     return false;
 }
 
-// Atalho para seleção de elementos
+// Atalho para seleção de elemento
 function el(selector) {
     return document.querySelector(selector);
+}
+
+// Atalho para seleção de elementos
+function els(selector){
+    return document.querySelectorAll(selector);
 }
 
 // Assume o controle sobre cliques nos links <a>
