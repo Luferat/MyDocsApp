@@ -21,7 +21,7 @@
     /* Remover bordas de elementos selecionados */
     outline: none;
     /* Aplica atraso em efeitos de transição */
-    transition: .1s;
+    /* transition: .1s; */
 }
 
 html, body, header, footer, nav, main, article, aside, p, h1, h2, h3, h4, h5, h6, blockquote {
@@ -115,6 +115,7 @@ div.header h1 {
     color: var(--bg-color);
     padding: 0;
     font-size: 1.5rem;
+    color: darkgreen;
 }
 
 #menu-toggle {
@@ -122,6 +123,7 @@ div.header h1 {
     padding: .8rem;
     font-size: 1.5rem;
     color: white;
+    /* transition: .2s; */
 }
 
 /* Responsividade do cabeçalho
@@ -151,7 +153,7 @@ div.header h1 {
 /* Menu principal <nav> */
 
 .wrap>nav {
-    display: block;
+    display: none;
 }
 
 div.nav {
@@ -194,6 +196,7 @@ div.nav a i {
 
     .wrap>nav {
         background: #04476891;
+        display: block;
     }
 
     div.nav {
@@ -247,7 +250,7 @@ div.footer-top {
 
 div.footer-top a {
     font-size: 1.5rem;
-    padding: .25rem;
+    padding: .5rem;
     color: white;
 }
 
