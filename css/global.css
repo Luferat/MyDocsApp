@@ -119,11 +119,11 @@ div.header h1 {
 }
 
 #menu-toggle {
-    margin-left: auto;
-    padding: .8rem;
+    margin: auto .5rem auto auto; /* Conserta bug da rolagem vertical durante a animação. */
     font-size: 1.5rem;
     color: white;
-    /* transition: .2s; */
+    transition: .2s;
+    text-decoration: none;
 }
 
 /* Responsividade do cabeçalho
