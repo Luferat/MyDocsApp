@@ -25,11 +25,11 @@ fetch('../database/config.json')
         loadPage('home');
 
         // Monitora cliques no botão do menu e redireciona para 'menuClick()'
-        menuToggle.addEventListener('click', menuClick);
+        menuToggle.onclick = menuClick;
 
         // Detecta mudanças na resolução e redireciona para 'changeRes()'
         changeRes();
-        window.addEventListener('resize', changeRes)
+        window.onresize = changeRes;
 
         // Monitora cliques nas tags <a> e redireciona para 'routerLink()'
         var links = els('a');
