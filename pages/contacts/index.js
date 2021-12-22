@@ -1,1 +1,2 @@
-console.log('Esta é a contacts');
+// Título da página
+setTitle('Faça contato');

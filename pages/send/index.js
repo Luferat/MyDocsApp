@@ -1,1 +1,2 @@
-console.log('Esta é a send');
+// Título da página
+setTitle('Enviar documento');

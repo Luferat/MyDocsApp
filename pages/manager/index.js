@@ -1,1 +1,2 @@
-console.log('Esta é a manage');
+// Título da página
+setTitle('Gerenciar documentos');

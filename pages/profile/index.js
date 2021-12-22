@@ -1,1 +1,2 @@
-console.log('Esta é a profile');
+// Título da página
+setTitle('Gerenciar perfil');

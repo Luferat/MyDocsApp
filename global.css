@@ -197,6 +197,7 @@ div.nav a i {
     .wrap>nav {
         background: #04476891;
         display: block;
+        padding: 1px;
     }
 
     div.nav {

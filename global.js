@@ -1,36 +1,78 @@
 /** global.js
  * 
- * JavaScript principal
+ * Este é o JavaScript principal do aplicativo. 
+ * Todo o controle doaplicativo é realizado por este arquivo.
  * 
+ * Por Luferat --> http://github.com/Luferat 
  */
 
-// Botão do menu
-var btnMenu = el('#menu-toggle');
+/**
+ * Localiza botão do menu
+ */
+var btnMenu = el('a[href="#menu"]');
 
-// Menu principal
+document.querySelector('a[href="#menu"]').onclick = (e) => {
+    console.log(e)
+}
+
+/**
+ * Localiza menu principal
+ */
 var menu = el('.wrap>nav');
 
 /**
- * Monitora cliques no btnMenu, chamando toggleMenu()
+ * Obtém nome da página que está sendo acessada, do 'localStorage'.
+ * Estude '404.html' para mais detalhes.
+ */
+let path = localStorage.getItem('path');
+
+// Se cliente acessou uma página específica
+if (path) {
+
+    // Limpa o 'localStorage'
+    localStorage.removeItem('path');
+
+    // Acessa a página solicitada
+    loadPage(path);
+
+    // Se não solicitou uma página específica
+} else {
+
+    // Carrega a página inicial
+    loadPage('home');
+}
+
+/**
+ * Monitora cliques no 'a#btnMenu' e executa toggleMenu() se ocorrer
  *  Referências: https://www.w3schools.com/jsref/dom_obj_event.asp
  */
 btnMenu.onclick = menuToggle;
 
-// Monitora modanças na resolução e redireciona para 'changeRes()'
+/**
+ * Monitora modanças na resolução e executa 'changeRes()' se ocorrer
+ *   Referências: https://www.w3schools.com/jsref/event_onresize.asp
+ */
 window.onresize = changeRes;
 
-// Monitora cliques nas tags <a>...</a>
+/**
+ * Monitora cliques nas tags <a>...</a> e executa 'routerLink()' se ocorrer
+ *   Referências: https://www.w3schools.com/js/js_loop_for.asp
+ */
 var links = els('a');
 for (var i = 0; i < links.length; i++) {
-    links[i].addEventListener('click', routerLink);
+    links[i].onclick = routerLink;
 }
 
 /**********************
  * Funções JavaScript *
  **********************/
 
-// Ação do clique no botão do menu 
+/**
+ * Ação do clique no botão do menu 
+ */
 function menuToggle() {
+
+    console.log('menu')
 
     /** 
      * Se o menu está visível (display="block"), oculta ele.
@@ -45,7 +87,9 @@ function menuToggle() {
     return false;
 }
 
-// Mostra menu, troca ícone e altera 'title' do botão.
+/**
+ * Mostra menu, troca ícone e altera 'title' do botão.
+ */
 function showMenu() {
 
     /**
@@ -60,14 +104,18 @@ function showMenu() {
     btnMenu.setAttribute('title', 'Oculta o menu');
 }
 
-// Oculta menu, troca ícone e altera 'title' do botão.
+/**
+ * Oculta menu, troca ícone e altera 'title' do botão.
+ */
 function hideMenu() {
     menu.style.display = 'none';
     btnMenu.classList.remove('fa-rotate-90');
     btnMenu.setAttribute('title', 'Mostra o menu');
 }
 
-// Processa mudanças na resolução
+/**
+ * Processa mudanças na resolução
+ */
 function changeRes() {
 
     /**
@@ -83,6 +131,9 @@ function changeRes() {
     return false;
 }
 
+/**
+ * Processa clique no link
+ */
 function routerLink(event) {
 
     // Obtém os atributos 'href' e 'target' do link clicado
@@ -127,7 +178,7 @@ function routerLink(event) {
  *   index.js --> JavaScript exclusivo desta página
  * 
  * OBS: mesmo que não use 'index.css' e/ou 'index.js', estes arquivos devem 
- * existir sem conteúdo
+ * existir sem conteúdo.
  */
 function loadPage(href) {
 
@@ -151,20 +202,12 @@ function loadPage(href) {
         // carrega o HTML e salva em div#content na 'index.html' 
         if (getFile(page.html, '#content')) {
 
-            // Se carregou o HTML,
+            // Atualiza endereço da página no navegador
+            window.history.replaceState('', '', href);
+
             // carrega o JavaScript e executa
-            getFile(page.js)
-
-            // Se falhou a carga do HTML, exibe erro (implementar 404)    
-        } else {
-            console.error(`${page.html} não existe!`);
-            return false;
+            getFile(page.js);
         }
-
-        // Se falhou a carga do CSS, exibe erro (implementar 404) 
-    } else {
-        console.error(`${page.css} não existe!`);
-        return false;
     }
 }
 
@@ -186,7 +229,7 @@ async function getFile(filePath, element = '') {
     if (element === '') eval(content);
 
     // Se declarou um elemento, envia os dados para o innerHTML do elemento
-    else el(element).innerHTML = contentData;
+    else el(element).innerHTML = content;
 
     // Retorna com true se deu certo
     return true;
@@ -210,4 +253,19 @@ function el(selector) {
  */
 function els(selector) {
     return document.querySelectorAll(selector);
+}
+
+/**
+ * Processa o título da página dinâmicamente na tag <title>...</title>
+ */
+function setTitle(pageTitle = '') {
+
+    // Se não definiu o título, usa o formato abaixo
+    if (pageTitle == '') el('head>title').innerHTML = `My.Docs.App .:. Seus documentos em nossas mãos.`;
+
+    // Se definiu o título, usa o formato abaixo
+    else el('head>title').innerHTML = `My.Docs.App .:. ${pageTitle}`;
+
+    // Sai sem fazer mais nada
+    return false;
 }

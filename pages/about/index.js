@@ -1,1 +1,2 @@
-console.log('Esta é a about');
+// Título da página
+setTitle('Sobre o app');

@@ -1,1 +1,2 @@
-console.log('Esta é a home');
+// Título da página. Deixar em branco para usar o 'default'
+setTitle();
