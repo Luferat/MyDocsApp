@@ -144,24 +144,51 @@ function loadPage(href) {
         js: "pages/" + href + "/index.js"
     };
 
-    // Carrega cada arquivo da página hierarquicamente
+    // Carrega o CSS e salva em style#page-css na 'index.html'    
     if (getFile(page.css, '#page-css')) {
+
+        // Se carregou o CSS, 
+        // carrega o HTML e salva em div#content na 'index.html' 
         if (getFile(page.html, '#content')) {
+
+            // Se carregou o HTML,
+            // carrega o JavaScript e executa
             getFile(page.js)
+
+            // Se falhou a carga do HTML, exibe erro (implementar 404)    
         } else {
             console.error(`${page.html} não existe!`);
+            return false;
         }
+
+        // Se falhou a carga do CSS, exibe erro (implementar 404) 
     } else {
         console.error(`${page.css} não existe!`);
+        return false;
     }
 }
 
+/**
+ * Obtém arquivo via requisição HTTP assíncrona.
+ *   Referências: https://www.w3schools.com/js/js_api_fetch.asp
+ */
 async function getFile(filePath, element = '') {
-    const fetchResult = fetch(filePath)
-    const response = await fetchResult;
-    const contentData = await response.text();
-    if (element === '') eval(contentData);
+
+    // Faz a requisição via HTTP do documento em 'filePath'
+    // Quando a resposta chegar, armazena-a em 'response'
+    const response = await fetch(filePath);
+
+    // Extrai os dados úteis de 'response' e armazena em 'content'
+    const content = await response.text();
+
+    // Se não declarou um elemento onde deixar os resultados, executa-os
+    // é o caso dos arquivos JavaScript
+    if (element === '') eval(content);
+
+    // Se declarou um elemento, envia os dados para o innerHTML do elemento
     else el(element).innerHTML = contentData;
+
+    // Retorna com true se deu certo
     return true;
 }
 
