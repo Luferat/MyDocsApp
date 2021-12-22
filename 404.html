@@ -6,8 +6,13 @@
      * é encontrada no servidor.
      *   Referências: https://pt.wikipedia.org/wiki/HTTP_404
      * 
-     * Nes app, este arquivo é responsável pelo processamento do SPA, 
+     * Neste app, este arquivo é responsável pelo processamento do SPA, 
      * permitindo acesso direto na URL as páginas do site.
+     * 
+     * Isso funcionará em servidores sem suporte a SPA ou redirecionamentos com
+     * .htaccess, por exemplo. Por exemplo, no serviço GitHub Pages.
+     * 
+     * Para funcionar, depende de suporte do 'localStorage' do JavaScript.
      * 
      * Quando acessamos uma página específica diretamente, por exemplo 
      * 'http://localhost:3000/about', este script grava a rota 'about' no 

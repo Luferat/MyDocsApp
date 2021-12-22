@@ -7,11 +7,6 @@
  */
 
 /**
- * Localiza menu principal
- */
-var menu = el('.wrap>nav');
-
-/**
  * Obtém nome da página que está sendo acessada, do 'localStorage'.
  * Estude '404.html' para mais detalhes.
  */
@@ -34,12 +29,6 @@ if (path) {
 }
 
 /**
- * Monitora cliques no 'a#btnMenu' e executa toggleMenu() se ocorrer
- *  Referências: https://www.w3schools.com/jsref/dom_obj_event.asp
- */
-// btnMenu.onclick = menuToggle;
-
-/**
  * Monitora modanças na resolução e executa 'changeRes()' se ocorrer
  *   Referências: https://www.w3schools.com/jsref/event_onresize.asp
  */
@@ -54,9 +43,9 @@ for (var i = 0; i < links.length; i++) {
     links[i].onclick = routerLink;
 }
 
-/**********************
- * Funções JavaScript *
- **********************/
+/*******************************
+ * Funções Espefícifas do tema *
+ *******************************/
 
 /**
  * Ação do clique no botão do menu 
@@ -64,31 +53,27 @@ for (var i = 0; i < links.length; i++) {
 function menuToggle() {
 
     /** 
-     * Se o menu está visível (display="block"), oculta ele.
-     *   Referências: https://www.w3schools.com/jsref/jsref_getcomputedstyle.asp
+     * Se o menu está visível (class="menu-opened"), oculta ele.
+     *   Referências: https://www.w3schools.com/jsref/prop_element_classlist.asp
      */
-    if (window.getComputedStyle(menu, null).display === 'block') hideMenu();
+    if (el('#mainMenu').classList.contains('menu-opened')) hideMenu();
 
-    // Se o menu está oculto (displa="none"), mostra ele
+    // Se o menu está oculto (class="menu-closed"), mostra ele
     else showMenu();
 
-    // Termina sem fazer nada
+    // Termina sem fazer mais nada
     return false;
 }
 
 /**
  * Mostra menu, troca ícone e altera 'title' do botão.
+ *   Referências:
+ *     https://www.w3schools.com/jsref/prop_element_classlist.asp
+ *     https://www.w3schools.com/jsref/met_element_setattribute.asp  
  */
 function showMenu() {
-
-    /**
-     * Referências:
-     *   https://www.w3schools.com/jsref/dom_obj_style.asp
-     *   https://www.w3schools.com/jsref/prop_element_classlist.asp
-     *   https://www.w3schools.com/jsref/met_element_setattribute.asp     * 
-     */
-
-     menu.style.display = 'block';
+    el('#mainMenu').classList.remove('menu-closed');
+    el('#mainMenu').classList.add('menu-opened');
     el('a[href="#menu"]').classList.add('fa-rotate-90');
     el('a[href="#menu"]').setAttribute('title', 'Oculta o menu');
 }
@@ -97,7 +82,8 @@ function showMenu() {
  * Oculta menu, troca ícone e altera 'title' do botão.
  */
 function hideMenu() {
-    menu.style.display = 'none';
+    el('#mainMenu').classList.remove('menu-opened');
+    el('#mainMenu').classList.add('menu-closed');
     el('a[href="#menu"]').classList.remove('fa-rotate-90');
     el('a[href="#menu"]').setAttribute('title', 'Mostra o menu');
 }
@@ -137,6 +123,9 @@ function routerLink(event) {
         menuToggle();
         return false;
     }
+
+    // Oculta o menu principal em resoluções menores
+    hideMenu();
 
     // Se href não existe, não faz nada
     if (href === '' || href === null) {
@@ -194,8 +183,8 @@ function loadPage(href) {
         js: "pages/" + href + "/index.js"
     };
 
-    // Carrega o CSS e salva em style#page-css na 'index.html'    
-    if (getFile(page.css, '#page-css')) {
+    // Carrega o CSS e salva em style#pageCSS na 'index.html'    
+    if (getFile(page.css, '#pageCSS')) {
 
         // Se carregou o CSS, 
         // carrega o HTML e salva em div#content na 'index.html' 

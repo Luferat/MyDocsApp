@@ -118,8 +118,9 @@ div.header h1 {
     color: darkgreen;
 }
 
-#menu-toggle {
-    margin: auto .5rem auto auto; /* Conserta bug da rolagem vertical durante a animação. */
+#menuToggle {
+    margin: auto .5rem auto auto;
+    /* Conserta bug da rolagem vertical durante a animação. */
     font-size: 1.5rem;
     color: white;
     transition: .2s;
@@ -145,16 +146,12 @@ div.header h1 {
 @media (min-width: 768px) {
 
     /* Oculta botão do menu em telas maiores */
-    #menu-toggle {
+    #menuToggle {
         display: none;
     }
 }
 
 /* Menu principal <nav> */
-
-.wrap>nav {
-    display: none;
-}
 
 div.nav {
     background: #044768;
@@ -166,6 +163,8 @@ div.nav {
     min-width: 0;
     box-shadow: -4px 6px 5px 0px #000;
     border-bottom-left-radius: .35rem;
+    transition: .1s; /* Tempo da animação */
+    transform-origin: right top; /* Ponto de partida da animação */
 }
 
 div.nav a {
@@ -190,6 +189,16 @@ div.nav a i {
     margin-right: .65rem;
 }
 
+/* Animação que exibe o menu principal */
+.menu-opened {
+    transform: scale(1);
+}
+
+/* Animação que oculta o menu princial */
+.menu-closed {
+    transform: scale(0);
+}
+
 /* Modifica o menu em resoluções maiores */
 
 @media (min-width: 768px) {
@@ -209,6 +218,7 @@ div.nav a i {
         box-shadow: none;
         border-radius: 0;
         justify-content: flex-end;
+        transform: scale(1); /* Exibe o menu principal */
     }
 
     div.nav a:first-child {
