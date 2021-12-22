@@ -186,7 +186,7 @@ async function getFile(filePath, element = '') {
     if (element === '') eval(content);
 
     // Se declarou um elemento, envia os dados para o innerHTML do elemento
-    else el(element).innerHTML = contentData;
+    else el(element).innerHTML = content;
 
     // Retorna com true se deu certo
     return true;
