@@ -7,15 +7,6 @@
  */
 
 /**
- * Localiza botão do menu
- */
-var btnMenu = el('a[href="#menu"]');
-
-document.querySelector('a[href="#menu"]').onclick = (e) => {
-    console.log(e)
-}
-
-/**
  * Localiza menu principal
  */
 var menu = el('.wrap>nav');
@@ -46,7 +37,7 @@ if (path) {
  * Monitora cliques no 'a#btnMenu' e executa toggleMenu() se ocorrer
  *  Referências: https://www.w3schools.com/jsref/dom_obj_event.asp
  */
-btnMenu.onclick = menuToggle;
+// btnMenu.onclick = menuToggle;
 
 /**
  * Monitora modanças na resolução e executa 'changeRes()' se ocorrer
@@ -71,8 +62,6 @@ for (var i = 0; i < links.length; i++) {
  * Ação do clique no botão do menu 
  */
 function menuToggle() {
-
-    console.log('menu')
 
     /** 
      * Se o menu está visível (display="block"), oculta ele.
@@ -99,9 +88,9 @@ function showMenu() {
      *   https://www.w3schools.com/jsref/met_element_setattribute.asp     * 
      */
 
-    menu.style.display = 'block';
-    btnMenu.classList.add('fa-rotate-90');
-    btnMenu.setAttribute('title', 'Oculta o menu');
+     menu.style.display = 'block';
+    el('a[href="#menu"]').classList.add('fa-rotate-90');
+    el('a[href="#menu"]').setAttribute('title', 'Oculta o menu');
 }
 
 /**
@@ -109,8 +98,8 @@ function showMenu() {
  */
 function hideMenu() {
     menu.style.display = 'none';
-    btnMenu.classList.remove('fa-rotate-90');
-    btnMenu.setAttribute('title', 'Mostra o menu');
+    el('a[href="#menu"]').classList.remove('fa-rotate-90');
+    el('a[href="#menu"]').setAttribute('title', 'Mostra o menu');
 }
 
 /**
@@ -140,9 +129,18 @@ function routerLink(event) {
     var href = this.getAttribute('href');
     var target = this.getAttribute('target');
 
+    /**
+     * Monitora cliques no 'a#btnMenu' e executa toggleMenu() se ocorrer
+     *  Referências: https://www.w3schools.com/jsref/dom_obj_event.asp
+     */
+    if (href === '#menu') {
+        menuToggle();
+        return false;
+    }
+
     // Se href não existe, não faz nada
     if (href === '' || href === null) {
-        event.preventDefault();
+        // event.preventDefault();
         return false;
     }
 
@@ -160,8 +158,9 @@ function routerLink(event) {
     // Se é uma rota (link interno), carrega a página solcitada
     else {
         // Bloqueia ação do HTML
-        event.preventDefault();
+        // event.preventDefault();
         loadPage(href);
+        return false;
     }
 
     // Termina sem fazer mais nada
