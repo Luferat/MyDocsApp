@@ -177,10 +177,10 @@ function loadPage(href) {
         css: `pages/${href}/index.css`,
 
         // HTML da página
-        html: 'pages/' + href + '/index.html',
+        html: `pages/${href}/index.html`,
 
         // JavaScript da página
-        js: "pages/" + href + "/index.js"
+        js: `pages/${href}/index.js`
     };
 
     // Carrega o CSS e salva em style#pageCSS na 'index.html'    
@@ -195,8 +195,8 @@ function loadPage(href) {
 
             // carrega o JavaScript e executa
             getFile(page.js);
-        }
-    }
+        } else console.error('erro1');
+    } else console.error('erro2');
 }
 
 /**
