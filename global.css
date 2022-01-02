@@ -1,5 +1,17 @@
-/* Variáveis
+/** ../global.css
+ * 
+ * Estas são as folhas de estilo de uso geral do aplicativo. Essas flhas de 
+ * estilo interferem em todo o site.
+ *
+ * Além dessas, cada página/rota também tem suas próprias folhas de estilo.
+ * 
+ * By Luferat → http://github.com/Luferat 
+ * MIT Lisence → https://opensource.org/licenses/MIT
+ */
+
+/** Variáveis
  * Define algumas configurações iniciais para o app.
+ * Você pode/deve adicionar outras variáveis aqui quando necessário.
  */
 
 :root {
@@ -11,17 +23,15 @@
     --min-width: 280px;
 }
 
-/* Reset do CSS
+/** Reset do CSS
  * Faz com que a página apareça sempre igual em qualquer navegador moderno.
  */
 
 * {
-    /* Margin e padding não interferem em width e height */
+    /* Margin e padding não interferem em width e height. */
     box-sizing: border-box;
-    /* Remover bordas de elementos selecionados */
+    /* Remover bordas de elementos selecionados. */
     outline: none;
-    /* Aplica atraso em efeitos de transição */
-    /* transition: .1s; */
 }
 
 html, body, header, footer, nav, main, article, aside, p, h1, h2, h3, h4, h5, h6, blockquote {
@@ -30,22 +40,25 @@ html, body, header, footer, nav, main, article, aside, p, h1, h2, h3, h4, h5, h6
 }
 
 body, html {
-    /* Força posicionamento relativo. Permite aplicar height em blocos. */
+    /* Força posicionamento relativo, permitindo aplicar height em blocos. */
     position: relative;
-    /* Remove margem e enchimento */
+    /* Remove margem e enchimento. */
     padding: 0;
     margin: 0;
-    /* Ocupar tela inteira */
+    /* Ocupar tela inteira. */
     width: 100%;
     height: 100%;
-    /* Define fonte padrão e medida da unidade 'rem' */
+    /* Define fonte padrão e medida da unidade 'rem'. */
     font-family: var(--font-family);
     font-size: var(--font-size);
 }
 
-p, h1, h2, h3, h4, h5, h6, blockquote {
+h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    padding: .9rem 0;
+}
+
+p {
+    margin: 1rem 0;
 }
 
 blockquote {
@@ -62,7 +75,8 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Fundo da página */
+/* Fundo da página. */
+
 body {
     background-color: var(--bg-color);
     background-image: var(--bg-image);
@@ -72,7 +86,7 @@ body {
     background-size: cover;
 }
 
-/* Quadro principal <div.wrap>
+/** Quadro principal <div.wrap>.
  * Controla a exibição de todos os blocos do app, principalmente "sticky footer".
  */
 
@@ -92,7 +106,7 @@ main {
     flex-grow: 1;
 }
 
-/* Cabeçalho <header> */
+/* Cabeçalho <header>. */
 
 .wrap>header {
     background: rgba(0, 0, 0, .8);
@@ -111,47 +125,47 @@ div.header img {
 }
 
 div.header h1 {
+    /* Aplica borda ao texto. */
     -webkit-text-stroke: 1px white;
     color: var(--bg-color);
-    padding: 0;
     font-size: 1.5rem;
     color: darkgreen;
 }
 
 #menuToggle {
-    margin: auto .5rem auto auto;
     /* Conserta bug da rolagem vertical durante a animação. */
+    margin: auto .5rem auto auto;
     font-size: 1.5rem;
     color: white;
     transition: .2s;
     text-decoration: none;
 }
 
-/* Responsividade do cabeçalho
+/** Responsividade do cabeçalho.
  * Para resoluções de 576px ou mais...
  */
 
 @media (min-width: 576px) {
 
-    /* Aumenta tamanho da fonte do título em telas maiores */
+    /* Aumenta tamanho da fonte do título. */
     div.header h1 {
         font-size: 2rem;
     }
 }
 
-/* Responsividade do cabeçalho
+/** Responsividade do cabeçalho.
  * Para resoluções de 768px ou mais...
  */
 
 @media (min-width: 768px) {
 
-    /* Oculta botão do menu em telas maiores */
+    /* Oculta botão do menu. */
     #menuToggle {
         display: none;
     }
 }
 
-/* Menu principal <nav> */
+/* Menu principal <nav>. */
 
 div.nav {
     background: #044768;
@@ -163,8 +177,10 @@ div.nav {
     min-width: 0;
     box-shadow: -4px 6px 5px 0px #000;
     border-bottom-left-radius: .35rem;
-    transition: .1s; /* Tempo da animação */
-    transform-origin: right top; /* Ponto de partida da animação */
+    /* Tempo da animação. */
+    transition: .1s;
+    /* Ponto de partida da animação. */
+    transform-origin: right top;
 }
 
 div.nav a {
@@ -189,18 +205,19 @@ div.nav a i {
     margin-right: .65rem;
 }
 
-/* Animação que exibe o menu principal */
+/* Exibe o menu principal. */
 .menu-opened {
     transform: scale(1);
 }
 
-/* Animação que oculta o menu princial */
+/* Oculta o menu princial. */
 .menu-closed {
     transform: scale(0);
 }
 
-/* Modifica o menu em resoluções maiores */
-
+/** Responsividade do menu principal.
+* Para resoluções de 768px ou mais...
+*/
 @media (min-width: 768px) {
 
     .wrap>nav {
@@ -218,7 +235,8 @@ div.nav a i {
         box-shadow: none;
         border-radius: 0;
         justify-content: flex-end;
-        transform: scale(1); /* Exibe o menu principal */
+        /* Exibe o menu principal */
+        transform: scale(1);
     }
 
     div.nav a:first-child {
@@ -234,16 +252,15 @@ div.nav a i {
     }
 }
 
-/* Bloco de conteúdo <main> */
+/* Bloco de conteúdo <main>. */
 
 div.main {
     position: relative;
     height: 100%;
     background: white;
-
 }
 
-/* Rodapé <footer> */
+/* Rodapé <footer>. */
 
 .wrap>footer {
     background: rgba(0, 0, 0, .7);
@@ -301,4 +318,60 @@ div.footer-bottom a:hover {
 div.footer-bottom a i {
     font-size: 1.2rem;
     margin-right: .25rem;
+}
+
+/** Formato geral do conteúdo.
+ * Isso pode ser sobrescrito no CSS de cada página.
+ */
+
+div.main>article {
+    padding: 1rem;
+}
+
+div.main>aside {
+    border-top: 3px dotted grey;
+    padding: 1rem;
+    background: rgba(0, 0, 0, .1);
+}
+
+div.main>article h1:first-child {
+    margin: 0;
+    padding: 1rem 0;
+}
+
+/** Responsividade do conteúdo geral.
+ * Para resoluções de 768px ou mais...
+ * Isso pode ser sobrescrito no CSS de cada página.
+ */
+
+@media (min-width: 768px) {
+    div.main {
+        display: flex;
+    }
+
+    div.main>article {
+        flex-grow: 1;
+    }
+
+    div.main>aside {
+        flex: 0 1 250px;
+        border: none;
+        border-left: 3px dotted grey;
+    }
+}
+
+/** Estilos de uso geral
+ * Classes de uso geral que podem ser usadas em qualquer lugar.
+ */
+
+.text-center {
+    text-align: center;
+}
+
+.small {
+    font-size: small;
+}
+
+.red {
+    color: red;
 }

@@ -1,18 +1,19 @@
-/** global.js
+/** ./global.js
  * 
  * Este é o JavaScript principal do aplicativo. 
  * Todo o controle doaplicativo é realizado por este arquivo.
  * 
- * Por Luferat --> http://github.com/Luferat 
+ * By Luferat → http://github.com/Luferat 
+ * MIT Lisence → https://opensource.org/licenses/MIT
  */
 
 /**
  * Aqui vamos fazer algumas predefinições importantes para o funcionamento do
  * aplicativo de forma mais dinâmica. Você pode implementar novas informações,
- * ampliando 'config'.
+ * ampliando as chaves de 'config'.
  */
 var config = {
-    
+
     // Largura mínima em pixels para troca do modo responsivo de small para middle.
     clientWidth: 768,
 
@@ -28,7 +29,7 @@ var config = {
 
 /**
  * Obtém nome da página que está sendo acessada, do 'localStorage'.
- * Estude '404.html' para mais detalhes.
+ * Estude './404.html' para mais detalhes.
  */
 let path = localStorage.getItem('path');
 
@@ -51,14 +52,16 @@ if (path) {
 /**
  * Força o fechamento do menu na incialização do aplicativo com 'hideMenu()' e
  * monitora as dimensões da view. Executa 'changeRes()' se ocorrerem mudanças.
- *   Referências: https://www.w3schools.com/jsref/event_onresize.asp
+ *   Referências: 
+ *     https://www.w3schools.com/jsref/event_onresize.asp
  */
 hideMenu();
 window.onresize = changeRes;
 
 /**
  * Monitora cliques nas tags <a>...</a> e executa 'routerLink()' se ocorrer.
- *   Referências: https://www.w3schools.com/js/js_loop_for.asp
+ *   Referências: 
+ *     https://www.w3schools.com/js/js_loop_for.asp
  */
 var links = els('a');
 for (var i = 0; i < links.length; i++) {
@@ -108,6 +111,10 @@ function showMenu() {
  * Oculta menu, troca ícone e altera 'title' do botão.
  * Basicamente desfaz o que foi feito na função 'showMenu()'.
  * 
+ *   Referências:
+ *     https://www.w3schools.com/jsref/prop_element_classlist.asp
+ *     https://www.w3schools.com/jsref/met_element_setattribute.asp
+ * 
  * OBS: esta funcionalidade poderia ser implementada na função 'menuToggle()',
  *      mas, dessa forma, podemos fechar o menu de forma independente, bastando
  *      executar 'hideMenu()' a qualquer momento.  
@@ -127,7 +134,7 @@ function hideMenu() {
 function changeRes() {
 
     // Se a resolução é maior que 767 pixels, sempre mostra o menu.
-    if (document.documentElement.clientWidth > config.clientWidth -1) showMenu();
+    if (document.documentElement.clientWidth > config.clientWidth - 1) showMenu();
 
     // Se a resolução é menor, sempre oculta o menu.
     else hideMenu();
@@ -140,6 +147,8 @@ function changeRes() {
  * Processa clique no link.
  *   Referências:
  *     https://www.w3schools.com/jsref/dom_obj_event.asp
+ *     https://www.w3schools.com/jsref/met_element_getattribute.asp
+ *     https://www.w3schools.com/jsref/jsref_substr.asp
  */
 function routerLink(event) {
 
@@ -160,8 +169,9 @@ function routerLink(event) {
     if (href === '' || href === null) return false;
 
     /** 
-     * Se href é um link externo ('http://', 'https://'), uma âncora ('#')
-     * ou target='_blank', devolve o controle para o HTML.
+     * Se href é um link externo ('http://...', 'https://...'), 
+     * uma âncora ('#') ou target='_blank', devolve o controle 
+     * para o HTML.
      */
     if (
         target === '_blank' ||
@@ -185,12 +195,15 @@ function routerLink(event) {
  * Observe que cada página fica em um diretório com o nome dela sob 'pages' 
  * e é composta de 3 arquivos:
  * 
- *   index.css --> Folha de estilos exclusiva desta página  
- *   index.html --> Estrutura HTMl desta página
- *   index.js --> JavaScript exclusivo desta página
+ *   index.css  → Folha de estilos exclusiva desta página  
+ *   index.html → Estrutura HTMl desta página
+ *   index.js   → JavaScript exclusivo desta página
  * 
  * OBS: mesmo que não use 'index.css' e/ou 'index.js', estes arquivos devem 
  * existir sem conteúdo (vazios).
+ * 
+ *   Referências:
+ *     https://www.w3schools.com/js/js_history.asp
  */
 function loadPage(href) {
 
@@ -220,7 +233,7 @@ function loadPage(href) {
         // Carrega o HTML e salva em div#content na 'index.html'.
         if (getFile(page.html, '#content')) {
 
-            // Atualiza endereço da página no navegador
+            // Atualiza endereço da página no navegador.
             window.history.replaceState('', '', href);
 
             // Carrega o JavaScript na memória e o executa.
@@ -239,18 +252,23 @@ function loadPage(href) {
  *     https://www.w3schools.com/js/js_async.asp
  *     https://www.w3schools.com/js/js_api_fetch.asp
  *     https://www.w3schools.com/jsref/jsref_eval.asp
+ *     https://www.w3schools.com/jsref/prop_html_innerhtml.asp
  */
 async function getFile(filePath, element = '') {
 
-    // Faz a requisição via HTTP do documento em 'filePath'.
-    // Quando a resposta chegar, armazena-a em 'response'.
+    /**
+     * Faz a requisição via HTTP do documento em 'filePath'.
+     * Quando a resposta chegar, armazena-a em 'response'.
+     */
     const response = await fetch(filePath);
 
     // Extrai os dados úteis de 'response' e armazena em 'content'.
     const content = await response.text();
 
-    // Se não declarou um elemento onde deixar os resultados, executa-os,
-    // pois se trata de um arquivo JavaScript.
+    /**
+     * Se não declarou um elemento onde deixar os resultados, executa-os,
+     * pois se trata de um arquivo JavaScript.
+     */
     if (element === '') eval(content);
 
     // Se declarou um elemento, envia os dados para o innerHTML do elemento.
@@ -288,10 +306,12 @@ function els(selector) {
 function setTitle(pageTitle = '') {
 
     // Se não definiu 'pageTitle', usa o formato especificado...
-    if (pageTitle == '') el('head>title').innerHTML = `${config.appName} ${config.separator} ${config.appSlogan}`;
+    if (pageTitle == '')
+        el('head>title').innerHTML = `${config.appName} ${config.separator} ${config.appSlogan}`;
 
     // Se definiu 'pageTitle', usa o formato especificado...
-    else el('head>title').innerHTML = `${config.appName} ${config.separator} ${pageTitle}`;
+    else
+        el('head>title').innerHTML = `${config.appName} ${config.separator} ${pageTitle}`;
 
     // Sai sem fazer mais nada.
     return false;
@@ -309,4 +329,75 @@ function setTitle(pageTitle = '') {
  */
 function setPage(pageName) {
     localStorage.setItem('path', pageName);
+}
+
+/**
+ * Sanitiza 'stringValue', removendo caracteres perigosos e espaços 
+ * desnecessários. 
+ * Por padrão (stripTags = true), remove tags HTML e scripts.
+ *   Referências:
+ *     https://www.w3schools.com/jsref/jsref_replace.asp
+ *     https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+ *     https://www.w3schools.com/jsref/jsref_trim_string.asp
+ */
+function sanitizeString(stringValue, stripTags = true) {
+
+    // Remove todas as tags HTML
+    if (stripTags) stringValue = stringValue.replace(/<[^>]*>?/gm, "");
+
+    // Quebras de linha viram <br>
+    stringValue = stringValue.replace(/\n/g, "<br />").trim();
+
+    // Remove espaços antes e depois
+    return stringValue.trim();
+}
+
+/**
+ * Gera a data atual em formato system date "YYYY-MM-DD HH:II:SS".
+ * Este é o formato recomendado para salvar no banco de dados.
+ *   Referências:
+ *     https://www.w3schools.com/js/js_dates.asp
+ *     https://www.w3schools.com/jsref/jsref_gettimezoneoffset.asp
+ *     https://www.w3schools.com/jsref/jsref_gettime.asp
+ *     https://www.w3schools.com/jsref/jsref_toisostring.asp
+ *     https://www.w3schools.com/jsref/jsref_split.asp
+ */
+function getSystemDate() {
+
+    // Obtém a data atual do navegador.
+    var yourDate = new Date();
+
+    // Obtém o fusohorário d navegador.
+    var offset = yourDate.getTimezoneOffset();
+
+    // Ajusta o fusohorário se necessário.
+    yourDate = new Date(yourDate.getTime() - offset * 60 * 1000);
+
+    // Separa data da hora.
+    returnDate = yourDate.toISOString().split("T");
+
+    // Separa partes da data.
+    returnTime = returnDate[1].split(".");
+
+    // Formata data como 'system date'.
+    return `${returnDate[0]} ${returnTime[0]}`;
+}
+
+/**
+ * Formata uma 'system date' (YYYY-MM-DD HH:II:SS) 
+ * para 'Br date' (DD/MM/YYYY às HH:II:SS).
+ *                            └─────────────────────────────────────┐
+ *   dateString → String com data formatada em 'system date';       │
+ *   separator → String que separa data da hora. Por default será ' às '.
+ */
+function getBrDate(dateString, separator = ' às ') {
+
+    // Separa data e hora.
+    var p1 = dateString.split(" ");
+
+    // Separa partes da data.
+    var p2 = p1[0].split("-");
+
+    // Remonta partes da data e hora.
+    return `${p2[2]}/${p2[1]}/${p2[0]}${separator}${p1[1]}`;
 }

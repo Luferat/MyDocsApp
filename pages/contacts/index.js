@@ -1,5 +1,108 @@
+/** ./pages/contacts/index.js
+ * 
+ * Este JavaScript é de uso exclusivo da página/rota 'contasts'.
+ * ele faz validação e processa o envio do formulário no front-end.
+ * 
+ * By Luferat → http://github.com/Luferat 
+ * MIT Lisence → https://opensource.org/licenses/MIT
+ */
+
 // Define a página de reload
 setPage('contacts');
 
 // Título da página
 setTitle('Faça contato');
+
+/**
+ * Cria função de processamento do formulário somente se não existe na memória.
+ *   Referências:
+ *     https://www.w3schools.com/js/js_typeof.asp
+ *     https://www.w3schools.com/jsref/prop_text_value.asp
+ *     https://www.w3schools.com/js/js_json_stringify.asp
+ */
+if (typeof sendForm !== "function") {
+    console.log('Criando função "sendForm"...');
+    window.sendForm = function () {
+
+        console.log('Enviando contato...');
+
+        /**
+         * Obtém e sanitiza os campos preenchidos.
+         * A função 'sanitizeString()' é declarada em 'global.js'.
+         * Campos adicionais podem ser processados aqui. Por exemplo:
+         *   contact.date → Data de envio do contato;
+         *   contact.status → Campo de controle sobre status do contato.
+         */
+        var contact = {
+            name: sanitizeString(el('#contact-name').value),
+            email: sanitizeString(el('#contact-email').value),
+            subject: sanitizeString(el('#contact-subject').value),
+            message: sanitizeString(el('#contact-message').value),
+            date: getSystemDate(),
+            status: 'recebido'
+        }
+
+        /**
+         * Não envia o form se algum campo esta vazio.
+         * Isso é útil caso a validação do HTML/CSS falhe.
+         */
+        var empty = false;
+        for (let key in contact) {
+            if (contact[key] == '') {
+                el(`#contact-${key}`).value = '';
+                empty = true;
+            };
+        }
+        if (empty) return false;
+
+        /**
+         * Salva contato no banco de dados.
+         * O que vai acontecer aqui depende de seu back-end e de como ele vai 
+         * receber os dados do front-end. Provalmente uma API REST que recebe
+         * os dados em JSON...
+         */
+        console.log(contact); // Dados brutos.
+        console.log(JSON.stringify(contact)); // Dados em JSON.
+
+        // Obtém o primeiro nome do remetente.
+        var name = contact.name.split(' ')[0];
+
+        // Formata mensagem de saída.
+        var msg = `
+<h2>Olá ${name}!</h2>
+<p>Seu contato foi enviado com sucesso.</p>
+<p><em>Obrigado...</em></p>
+`;
+
+        // Envia mensagem para a view.
+        el('#feedback').innerHTML = msg;
+
+        // Oculta formulário.
+        el('#contact').style.display = 'none';
+
+        // Apaga valores dos campos do formulário.
+        el('#contact-name').value = '';
+        el('#contact-email').value = '';
+        el('#contact-subject').value = '';
+        el('#contact-message').value = '';
+
+        // Exibe mensagem de saída.
+        el('#feedback').style.display = 'block';
+
+        console.log('Contato enviado...');
+
+        /**
+         * Termina sem fazer mais nada.
+         * Isso evita que o controle retorne para o HTML e que o formulário
+         * seja enviado por lá também.
+         */
+        return false;
+    }
+} else console.log('Função "sendForm" já existe. Não vou criar...');
+
+/**
+ * Processa envio do formulário.
+ *   Referências:
+ *     https://www.w3schools.com/jsref/event_onsubmit.asp
+ */
+el('#contact').onsubmit = sendForm;

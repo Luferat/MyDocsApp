@@ -1,3 +1,108 @@
-h2 {
-    color: green;
+/** ./contacts/index.css
+ * Folhas de estilo da página/rota 'contacts'.
+ *
+ * By Luferat → http://github.com/Luferat 
+ * MIT Lisence → https://opensource.org/licenses/MIT
+ */
+
+#contact {
+    display: block;
+}
+
+#feedback {
+    display: none;
+}
+
+#contact label {
+    display: block;
+    padding: 0 0 0.3rem 0.5rem;
+    font-size: 0.9rem;
+}
+
+#contact input,
+#contact textarea,
+#contact button {
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    background: rgb(233, 239, 255);
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+}
+
+#contact input,
+#contact textarea {
+    width: 100%;
+    border: 1px dotted grey;
+}
+
+#contact textarea {
+    height: 6em;
+    resize: vertical;
+}
+
+#contact button {
+    background: linear-gradient(rgb(146, 182, 212), rgb(27, 76, 116));
+    color: #fff;
+    cursor: pointer;
+}
+
+#contact button:hover {
+    background: linear-gradient(rgb(248, 147, 110), rgb(141, 40, 4));
+}
+
+#contact button:disabled {
+    background: linear-gradient(rgb(88, 88, 88), grey);
+    color: rgb(180, 180, 180);
+    cursor: not-allowed;
+}
+
+#contact input:invalid,
+#contact textarea:invalid {
+    background: rgb(255, 207, 207);
+    border-bottom: 3px solid red;
+}
+
+#contact input:valid,
+#contact textarea:valid {
+    background: rgb(233, 239, 255);
+    border-bottom: 3px solid green;
+}
+
+#contact:invalid button {
+    pointer-events: none;
+    background: linear-gradient(rgb(88, 88, 88), grey);
+    color: rgb(219, 219, 219);
+    cursor: not-allowed;
+}
+
+#siteName {
+    font-weight: bold;
+}
+
+/* Barra lateral */
+
+aside.contacts p, #contact p {
+    padding-top: 0;
+}
+
+aside.contacts div {
+    display: flex;
+    flex-direction: column;
+    line-height: 2.5;
+    margin-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+aside.contacts a {
+    display: flex;
+    align-items: center;
+}
+
+aside.contacts a:hover {
+    text-decoration: none;
+}
+
+aside.contacts i {
+    font-size: 2rem;
 }

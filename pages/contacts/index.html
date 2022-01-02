@@ -1,3 +1,70 @@
-<h2>Faça contato</h2>
-<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim sunt iure magnam, illo nemo dolores tenetur architecto pariatur corporis tempore, velit in cumque explicabo non impedit vero ducimus maxime perferendis!</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto labore, numquam, incidunt in quae quibusdam nostrum illum laboriosam distinctio repudiandae qui inventore doloremque! Facilis id unde harum ipsa non. Molestias.</p>
+<article>
+
+    <form method="GET" name="contact" id="contact">
+
+        <h2>Faça Contato</h2>
+
+        <p>Preencha os campos abaixo para entrar em contato com a equipe do site.</p>
+
+        <p class="text-center small red">* Todos os campos são obrigatórios.</p>
+
+        <input type="hidden" name="contact-send" id="contact-send" value="Ok">
+
+        <p>
+            <label for="name">Nome:</label>
+            <input type="text" name="contact-name" id="contact-name" required minlength="3" class="field valid" value="Joca da Silva">
+        </p>
+
+        <p>
+            <label for="email">E-mail:</label>
+            <input type="email" name="contact-email" id="contact-email" required class="field valid" value="joca@silva">
+        </p>
+
+        <p>
+            <label for="subject">Assunto:</label>
+            <input type="text" name="contact-subject" id="contact-subject" required minlength="3" class="field valid" value="Contato do Joca.">
+        </p>
+
+        <p>
+            <label for="message">Menssagem:</label>
+            <textarea name="contact-message" id="contact-message" required minlength="5" class="field valid">Mensagem do Joca</textarea>
+        </p>
+
+        <p>
+            <label for="submit"></label>
+            <button type="submit" name="contact-submit" id="contact-submit">Enviar</button>
+            <small class="grey">Suporta somente texto.</small>
+        </p>
+
+    </form>
+
+    <div id="feedback"></div>
+
+</article>
+
+<aside class="contacts">
+    <h3>Mais contatos</h3>
+    <p>Conheça nossas redes sociais e outras formas de contato.</p>
+    <div class="contact-list">
+        <a href="https://wa.me/5521987654321" target="_blank" title="Meu WhatsApp">
+            <i class="fab fa-whatsapp-square fa-fw"></i><span>WhatsApp</span>
+        </a>
+        <a href="mailto://contato@mydocsapp.com" target="_blank" title="Meu e-mail">
+            <i class="fas fa-envelope-square fa-fw"></i><span>E-mail</span>
+        </a>
+        <a href="https://github.com/Luferat" target="_blank" title="Meu GitHub">
+            <i class="fab fa-github-square fa-fw"></i><span>GitHub</span>
+        </a>
+        <a href="https://linkedin.com/Luferat" target="_blank" title="Meu LinkedIn">
+            <i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span>
+        </a>
+        <a href="https://facebook.com/Luferat" target="_blank" title="Meu Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i><span>Facebook</span>
+        </a>
+        <a href="https://instagram.com/Luferat" target="_blank" title="Meu Instagram">
+            <i class="fab fa-instagram-square fa-fw"></i><span>Instagram</span>
+        </a>
+    </div>
+</aside>
+
+<script>$(document).ready(runContacts);</script>
