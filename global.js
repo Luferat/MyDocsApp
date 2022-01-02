@@ -232,7 +232,8 @@ function loadPage(href) {
 }
 
 /**
- * Obtém arquivo via requisição HTTP assíncrona.
+ * Obtém arquivo especificado em 'filePath' via requisição HTTP assíncrona.
+ * Se 'element' é declarado, exibe o conteúdo obtido no elemento selecionado.
  *   Referências:
  *     https://www.w3schools.com/js/js_asynchronous.asp
  *     https://www.w3schools.com/js/js_async.asp
@@ -286,10 +287,10 @@ function els(selector) {
  */
 function setTitle(pageTitle = '') {
 
-    // Se não definiu o título, usa o formato especificado...
+    // Se não definiu 'pageTitle', usa o formato especificado...
     if (pageTitle == '') el('head>title').innerHTML = `${config.appName} ${config.separator} ${config.appSlogan}`;
 
-    // Se definiu o título, usa o formato especificado...
+    // Se definiu 'pageTitle', usa o formato especificado...
     else el('head>title').innerHTML = `${config.appName} ${config.separator} ${pageTitle}`;
 
     // Sai sem fazer mais nada.
