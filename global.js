@@ -236,7 +236,6 @@ function loadPage(href) {
  *   Referências:
  *     https://www.w3schools.com/js/js_asynchronous.asp
  *     https://www.w3schools.com/js/js_async.asp
- *     
  *     https://www.w3schools.com/js/js_api_fetch.asp
  *     https://www.w3schools.com/jsref/jsref_eval.asp
  */
