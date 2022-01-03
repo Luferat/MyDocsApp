@@ -1,0 +1,21 @@
+<script>
+
+
+    // data to be sent to the POST request
+    let contact = {
+        title: "Joca",
+        body: "Silva",
+        userId: 143546
+    }
+
+    fetch('http://localhost:3030/contacts', {
+        method: "POST",
+        body: JSON.stringify(contact),
+        headers: { "Content-type": "application/json; charset=UTF-8" }
+    })
+        .then(response => response.json())
+        .then(json => console.log(json))
+        .catch(err => console.log(err));
+
+
+</script>

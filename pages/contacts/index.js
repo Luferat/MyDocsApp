@@ -21,7 +21,9 @@ setTitle('Faça contato');
  *     https://www.w3schools.com/js/js_json_stringify.asp
  */
 if (typeof sendForm !== "function") {
+
     console.log('Criando função "sendForm"...');
+
     window.sendForm = function () {
 
         console.log('Enviando contato...');
@@ -57,39 +59,76 @@ if (typeof sendForm !== "function") {
 
         /**
          * Salva contato no banco de dados.
+         * 
          * O que vai acontecer aqui depende de seu back-end e de como ele vai 
          * receber os dados do front-end. Provalmente uma API REST que recebe
          * os dados em JSON...
+         * 
+         * No exemplo, está salvando em um banco de dados JSON (./db/db.json)
+         * provido pelo 'json-server'.
+         *   Referências:
+         *     https://github.com/typicode/json-server
          */
-        console.log(contact); // Dados brutos.
-        console.log(JSON.stringify(contact)); // Dados em JSON.
 
-        // Obtém o primeiro nome do remetente.
-        var name = contact.name.split(' ')[0];
+        // console.log(contact); // Dados brutos.
+        // console.log(JSON.stringify(contact)); // Dados em JSON.
 
-        // Formata mensagem de saída.
-        var msg = `
-<h2>Olá ${name}!</h2>
-<p>Seu contato foi enviado com sucesso.</p>
-<p><em>Obrigado...</em></p>
-`;
+        /**
+         * Faz a conexão com a API REST contendo o banco de dados usando o 
+         * método HTTP 'POST' e postando os dados no 'body' do documento enviado, 
+         * formatando-o como um JSON.
+         */
+        fetch('http://localhost:3030/contacts', {
+            method: "POST",
+            body: JSON.stringify(contact),
+            headers: { "Content-type": "application/json; charset=UTF-8" }
+        })
 
-        // Envia mensagem para a view.
-        el('#feedback').innerHTML = msg;
+            // Resposta do 'fetch'
+            .then(response => {
 
-        // Oculta formulário.
-        el('#contact').style.display = 'none';
+                // Se falhou por algum motivo...
+                if (!response.ok) {
 
-        // Apaga valores dos campos do formulário.
+                    // Formata mensagem de saída na view.
+                    el('#feedback').innerHTML = `
+                        <h2>Olá!</h2>
+                        <p class="red">Algo deu errado e não foi possível enviar seu contato.</p>
+                        <p class="red">Por favor, tente mais tarde.</p>
+                        <p><em>Obrigado...</em></p>
+                    `;
+
+                    console.error('Falha ao enviar contato!');
+
+                    // Se deu tudo certo...
+                } else {
+
+                    // Obtém o primeiro nome do remetente.
+                    var name = contact.name.split(' ')[0];
+
+                    // Formata mensagem de saída na view.
+                    el('#feedback').innerHTML = `
+                        <h2>Olá ${name}!</h2>
+                        <p>Seu contato foi enviado com sucesso.</p>
+                        <p><em>Obrigado...</em></p>
+                    `;
+
+                    console.log('Contato enviado com sucesso!');
+                }
+
+            })
+
+        // Limpa os campos do formulário para permitir novos envios.
         el('#contact-name').value = '';
         el('#contact-email').value = '';
         el('#contact-subject').value = '';
         el('#contact-message').value = '';
 
+        // Oculta formulário.
+        el('#contact').style.display = 'none';
+
         // Exibe mensagem de saída.
         el('#feedback').style.display = 'block';
-
-        console.log('Contato enviado...');
 
         /**
          * Termina sem fazer mais nada.
@@ -98,7 +137,8 @@ if (typeof sendForm !== "function") {
          */
         return false;
     }
-} else console.log('Função "sendForm" já existe. Não vou criar...');
+} else
+    console.log('Função "sendForm" já existe na memória. Não vou criar...');
 
 /**
  * Processa envio do formulário.
