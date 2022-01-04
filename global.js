@@ -1,71 +1,131 @@
 /** ./global.js
  * 
  * Este é o JavaScript principal do aplicativo. 
- * Todo o controle doaplicativo é realizado por este arquivo.
+ * Todo o controle do aplicativo é realizado por este arquivo.
  * 
  * By Luferat → http://github.com/Luferat 
  * MIT Lisence → https://opensource.org/licenses/MIT
  */
 
-/**
- * Aqui vamos fazer algumas predefinições importantes para o funcionamento do
- * aplicativo de forma mais dinâmica. Você pode implementar novas informações,
- * ampliando as chaves de 'config'.
- */
-var config = {
-
-    // Largura mínima em pixels para troca do modo responsivo de small para middle.
-    clientWidth: 768,
-
-    // Nome do aplicativo que será usado na tag <title>...</title>.
-    appName: 'My.Docs.App',
-
-    // Slogan do aplicativo.
-    appSlogan: 'Seus documentos em nossas mãos.',
-
-    // Separador usado na tag <title>...</title>.
-    separator: '.:.',
-}
+/*********************************
+ * Declarando variáveis globais. *
+ *********************************/
 
 /**
- * Obtém nome da página que está sendo acessada, do 'localStorage'.
- * Estude './404.html' para mais detalhes.
+ * Variável que armazenará as configurações do aplicativo em tempo de execução.
+ * Os valores de 'config' são obtidos da coleção 'config' da API JSON.
  */
-let path = localStorage.getItem('path');
-
-// Se cliente acessou uma página específica...
-if (path) {
-
-    // Limpa o 'localStorage'.
-    localStorage.removeItem('path');
-
-    // Acessa a página solicitada.
-    loadPage(path);
-
-    // Se não solicitou uma página específica...
-} else {
-
-    // Carrega a página inicial.
-    loadPage('home');
-}
+var config = {};
 
 /**
- * Força o fechamento do menu na incialização do aplicativo com 'hideMenu()' e
- * monitora as dimensões da view. Executa 'changeRes()' se ocorrerem mudanças.
- *   Referências: 
- *     https://www.w3schools.com/jsref/event_onresize.asp
+ * Variável com o endereço (URL) da API JSON.
+ *   Observe que esta URL sempre deve terminar com '/'.
  */
-hideMenu();
-window.onresize = changeRes;
+var apiRUL = 'http://localhost:3030/';
 
 /**
- * Monitora cliques nas tags <a>...</a> e executa 'routerLink()' se ocorrer.
- *   Referências: 
- *     https://www.w3schools.com/js/js_loop_for.asp
+ * Criando 'promessa' que lê as configurações da API JSON.
+ *   Referências:
+ *     https://www.w3schools.com/js/js_promise.asp
  */
-var links = els('a');
-for (var i = 0; i < links.length; i++) {
-    links[i].onclick = routerLink;
+let getConfig = new Promise((resolve, reject) => {
+
+    /**
+     * Lendo coleção config da API JSON usando HTTP:GET.
+     */
+    fetch(apiRUL + 'config')
+
+        // Se conseguiu...
+        .then((resolveData) => {
+
+            // Filtra os dados obtidos como JSON/Objeto
+            resolveData.json().then((data) => {
+
+                // Conclui a 'promessa' devolvendo os dados obtidos.
+                resolve(data);
+            });
+        })
+
+        // Se falhou...
+        .catch((err) => {
+
+            // Rejeita a 'promessa', devolvendo a mensagem de erro obtida.
+            reject(err);
+        })
+
+});
+
+/**
+ * Executando a 'promessa' criada em 'getConfig'.
+ */
+getConfig.then((data) => {
+
+    /**
+     * Se cumpriu a 'promessa', armazena as configurações obtidas em 'config'.
+     * e executa o aplicativo principal 'mainApp()'.
+     */
+    config = data;
+    mainApp();
+
+}).catch((error) => {
+
+    /**
+     * Se não cumpriu a 'promessa', obtém e exibe mensagem de erro no console.
+     */
+    console.error('Algo deu errado! Muito errado mesmo! ' + error);
+})
+
+/**
+ * Aplicativo principal.
+ * 
+ * Esta função contém todo o processamento principal do aplicativo.
+ * 
+ * Ela, basicamente, trata eventos disparados pelo navegador, pelo sistema, 
+ * pelo usuário, etc.
+ */
+function mainApp() {
+
+    /**
+     * Obtém nome da página que está sendo acessada, do 'localStorage'.
+     * Estude './404.html' para mais detalhes.
+     */
+    let path = localStorage.getItem('path');
+
+    // Se cliente acessou uma página específica...
+    if (path) {
+
+        // Limpa o 'localStorage'.
+        localStorage.removeItem('path');
+
+        // Acessa a página solicitada.
+        loadPage(path);
+
+        // Se não solicitou uma página específica...
+    } else {
+
+        // Carrega a página inicial.
+        loadPage('home');
+    }
+
+    /**
+     * Força o fechamento do menu na incialização do aplicativo com 'hideMenu()' e
+     * monitora as dimensões da view. Executa 'changeRes()' se ocorrerem mudanças.
+     *   Referências: 
+     *     https://www.w3schools.com/jsref/event_onresize.asp
+     */
+    hideMenu();
+    window.onresize = changeRes;
+
+    /**
+     * Monitora cliques nas tags <a>...</a> e executa 'routerLink()' se ocorrer.
+     *   Referências: 
+     *     https://www.w3schools.com/js/js_loop_for.asp
+     */
+    let links = els('a');
+    for (let i = 0; i < links.length; i++) {
+        links[i].onclick = routerLink;
+    }
+
 }
 
 /*******************************
@@ -172,7 +232,7 @@ function routerLink(event) {
     /** 
      * Se href é um link externo ('http://...', 'https://...'), 
      * uma âncora ('#') ou target='_blank', devolve o controle 
-     * para o HTML.
+     * para o HTML com 'return true'.
      */
     if (
         target === '_blank' ||
@@ -182,7 +242,7 @@ function routerLink(event) {
     ) return true;
 
     /**
-     * Se é uma rota (link interno), carrega a página solcitada com 
+     * Se é uma rota (link interno), carrega a página solicitada com 
      * 'loadPage()' e bloqueia ação padrão do HTML com 'return false'.
      */
     else {
@@ -196,12 +256,12 @@ function routerLink(event) {
  * Observe que cada página fica em um diretório com o nome dela sob 'pages' 
  * e é composta de 3 arquivos:
  * 
- *   index.css  → Folha de estilos exclusiva desta página  
- *   index.html → Estrutura HTMl desta página
- *   index.js   → JavaScript exclusivo desta página
+ *   index.css  → Folha de estilos exclusiva desta página.
+ *   index.html → Estrutura HTMl desta página.
+ *   index.js   → JavaScript exclusivo desta página.
  * 
  * OBS: mesmo que não use 'index.css' e/ou 'index.js', estes arquivos devem 
- * existir sem conteúdo (vazios).
+ * existir, mesmo sem conteúdo (vazios).
  * 
  *   Referências:
  *     https://www.w3schools.com/js/js_history.asp

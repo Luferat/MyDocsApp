@@ -155,6 +155,7 @@ if (typeof sendForm !== "function") {
  * 
  *   Referências:
  *     https://www.w3schools.com/jsref/jsref_replace.asp
+ *     https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/trimStart
  */
 if (typeof inputFilters !== "function") {
 
@@ -162,9 +163,8 @@ if (typeof inputFilters !== "function") {
 
     window.inputFilters = function () {
 
-        // Se o campo contém somente um espaço, este será removido.
-        if (this.value === ' ' && this.value.length === 1)
-            this.value = '';
+        // Remove quaisquer espaços no começo do campo.
+        this.value = this.value.trimStart();
 
         // Se 'data-spaces="true"' no campo, não faz mais nada
         if (this.getAttribute('data-spaces') !== 'true')

@@ -1,3 +1,19 @@
 {
-  "contacts": []
+  "config": {
+    "clientWidth": 768,
+    "appName": "My.Docs.App",
+    "appSlogan": "Seus documentos em nossas mãos.",
+    "separator": ".:."
+  },
+  "contacts": [
+    {
+      "name": "Joca da Silva e Souza",
+      "email": "joca@silva.souza",
+      "subject": "Contato do Joca Souza.",
+      "message": "hjhj ghj ghjf gj ghj gf jhgfjghj f gf",
+      "date": "2022-01-04 14:32:55",
+      "status": "recebido",
+      "id": 1
+    }
+  ]
 }
