@@ -146,6 +146,7 @@ function changeRes() {
 /**
  * Processa clique no link.
  *   Referências:
+ *     https://www.w3schools.com/js/js_this.asp
  *     https://www.w3schools.com/jsref/dom_obj_event.asp
  *     https://www.w3schools.com/jsref/met_element_getattribute.asp
  *     https://www.w3schools.com/jsref/jsref_substr.asp

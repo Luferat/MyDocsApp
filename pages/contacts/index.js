@@ -141,8 +141,54 @@ if (typeof sendForm !== "function") {
     console.log('Função "sendForm" já existe na memória. Não vou criar...');
 
 /**
+ * A função 'inputFilters' evita que o usuário digite somente espaços no campo 
+ * do formulário. Também remove qualquer espaço duplicado digitado no campo.
+ * 
+ * Se o campo (HTML) tiver o atributo 'data-spaces="true"', a remoção dos 
+ * espaços duplicados é desligada para ele.
+ * 
+ * Dica 1: esta função pode ser ampliada com outros filtros que atuarão durante a 
+ * digitação (onkeyup) nos campos.
+ * 
+ * Dica 2: caso esta função seja usada em outras páginas/formulários, mova-a 
+ * para ./global.js.
+ * 
+ *   Referências:
+ *     https://www.w3schools.com/jsref/jsref_replace.asp
+ */
+if (typeof inputFilters !== "function") {
+
+    console.log('Criando função "inputFilters"...');
+
+    window.inputFilters = function () {
+
+        // Se o campo contém somente um espaço, este será removido.
+        if (this.value === ' ' && this.value.length === 1)
+            this.value = '';
+
+        // Se 'data-spaces="true"' no campo, não faz mais nada
+        if (this.getAttribute('data-spaces') !== 'true')
+
+            /** 
+             * Para qualquer outro valor ou ausência de 'data-spaces', remove espaços duplicados do campo. 
+             */
+            this.value = this.value.replace(/\s{2,}/g, ' ');
+    }
+
+} else
+    console.log('Função "inputFilters" já existe na memória. Não vou criar...');
+
+/**
  * Processa envio do formulário.
  *   Referências:
  *     https://www.w3schools.com/jsref/event_onsubmit.asp
  */
 el('#contact').onsubmit = sendForm;
+
+/**
+ * Processa cada campo do formulário ao ser preenchido.
+ */
+var inputs = el('#contact').elements;
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].onkeyup = inputFilters;
+}
