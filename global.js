@@ -1,7 +1,7 @@
 /** global.js
  * 
  * Este é o JavaScript principal do aplicativo. 
- * Todo o controle doaplicativo é realizado por este arquivo.
+ * Todo o controle do aplicativo é realizado por este arquivo.
  * 
  * Por Luferat --> http://github.com/Luferat 
  */
