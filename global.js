@@ -66,7 +66,7 @@ for (var i = 0; i < links.length; i++) {
 }
 
 /*******************************
- * Funções Espefícifas do tema *
+ * Funções Específicas do tema *
  *******************************/
 
 /**
