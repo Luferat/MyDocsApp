@@ -24,6 +24,9 @@ var config = {
 
     // Separador usado na tag <title>...</title>.
     separator: '.:.',
+
+    // Define o logotipo do site
+    logo: 'assets/img/logo_64.png'
 }
 
 /**
@@ -64,6 +67,16 @@ var links = els('a');
 for (var i = 0; i < links.length; i++) {
     links[i].onclick = routerLink;
 }
+
+/**
+ * Define o logotipo conforme 'config'
+ */
+el('#logo').setAttribute('src', config.logo);
+
+/**
+ * Define o título do site.
+ */
+el('#siteName').innerHTML = config.appName;
 
 /*******************************
  * Funções Específicas do tema *
