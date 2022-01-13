@@ -1,3 +1,65 @@
-<h2>Faça contato</h2>
-<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim sunt iure magnam, illo nemo dolores tenetur architecto pariatur corporis tempore, velit in cumque explicabo non impedit vero ducimus maxime perferendis!</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto labore, numquam, incidunt in quae quibusdam nostrum illum laboriosam distinctio repudiandae qui inventore doloremque! Facilis id unde harum ipsa non. Molestias.</p>
+<article>
+
+    <h2>Faça contato</h2>
+
+    <p>Preencha os campos abaixo para entrar em contato com a equipe do aplicativo.</p>
+
+    <p class="red center small">Todos os campos são obrigatórios.</p>
+
+    <form action="#" id="contact" name="contact" method="post">
+
+        <p>
+            <label for="contactName">Seu nome:</label>
+            <input type="text" name="contact-name" id="contactName" required minlength="3" class="field valid" value="">
+        </p>
+
+        <p>
+            <label for="contactEmail">Seu e-mail:</label>
+            <input type="email" name="contact-email" id="contactEmail" required class="field valid" value="">
+        </p>
+
+        <p>
+            <label for="contactSubject">Assunto:</label>
+            <input type="text" name="contact-subject" id="contactSubject" required minlength="3" class="field valid" value="">
+        </p>
+
+        <p>
+            <label for="contactMessage">Mensagem:</label>
+            <textarea name="contact-message" id="contactMessage" required minlength="5" class="field valid"></textarea>
+        </p>
+
+        <p>
+            <button type="submit" name="contact-send" id="contactSend">Enviar</button>
+            <span class="small">&larr; Clique somente uma vez.</span>
+        </p>
+
+    </form>
+
+    <div id="feedback"></div> 
+
+</article>
+
+<aside class="contacts">
+    <h3>Mais contatos</h3>
+    <p>Conheça nossas redes sociais e outras formas de contato.</p>
+    <div class="contact-list">
+        <a href="https://wa.me/5521987654321" target="_blank" title="Nosso WhatsApp.">
+            <span>Whatsapp</span>
+        </a>
+        <a href="maito://contato@mydocsapp.com" target="_blank" title="Nosso e-mail.">
+            <span>E-mail</span>
+        </a>
+        <a href="https://github.com/Luferat" target="_blank" title="Meu GitHub">
+            <i class="fab fa-github-square fa-fw"></i><span>GitHub</span>
+        </a>
+        <a href="https://linkedin.com/Luferat" target="_blank" title="Meu LinkedIn">
+            <i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span>
+        </a>
+        <a href="https://facebook.com/Luferat" target="_blank" title="Meu Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i><span>Facebook</span>
+        </a>
+        <a href="https://instagram.com/Luferat" target="_blank" title="Meu Instagram">
+            <i class="fab fa-instagram-square fa-fw"></i><span>Instagram</span>
+        </a>
+    </div>
+</aside>

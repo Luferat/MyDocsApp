@@ -1,7 +1,7 @@
 /** global.js
  * 
  * Este é o JavaScript principal do aplicativo. 
- * Todo o controle doaplicativo é realizado por este arquivo.
+ * Todo o controle do aplicativo é realizado por este arquivo.
  * 
  * Por Luferat --> http://github.com/Luferat 
  */
@@ -26,7 +26,7 @@ var config = {
     separator: '.:.',
 
     // Define o logotipo do site
-    logo: 'assets/img/logo_64.png'
+    appLogo: 'assets/img/logo_64.png'
 }
 
 /**
@@ -71,7 +71,7 @@ for (var i = 0; i < links.length; i++) {
 /**
  * Define o logotipo conforme 'config'
  */
-el('#logo').setAttribute('src', config.logo);
+el('#logo').setAttribute('src', config.appLogo);
 
 /**
  * Define o título do site.
@@ -150,7 +150,7 @@ function changeRes() {
 }
 
 /**
- * Processa clique no link.
+ * Processa clique no link, ou seja, em qualquer tag '<a>...</a>'.
  *   Referências:
  *     https://www.w3schools.com/jsref/dom_obj_event.asp
  */
@@ -174,7 +174,7 @@ function routerLink(event) {
 
     /** 
      * Se href é um link externo ('http://', 'https://'), uma âncora ('#')
-     * ou target='_blank', devolve o controle para o HTML.
+     * ou neste, target='_blank', devolve o controle para o HTML.
      */
     if (
         target === '_blank' ||
