@@ -323,3 +323,36 @@ function setTitle(pageTitle = '') {
 function setPage(pageName) {
     localStorage.setItem('path', pageName);
 }
+
+// Gera a data atual em formato system date "YYYY-MM-DD HH:II:SS"
+function getSystemDate() {
+    var yourDate = new Date(); // Obtém a data atual do navegador
+    var offset = yourDate.getTimezoneOffset(); // Obtém o fusohorário
+    yourDate = new Date(yourDate.getTime() - offset * 60 * 1000); // Ajusta o fusohorário
+    returnDate = yourDate.toISOString().split("T"); // Separa data da hora
+    returnTime = returnDate[1].split("."); // Separa partes da data
+    return `${returnDate[0]} ${returnTime[0]}`; // Formata data como system date
+}
+
+// Formata uma 'system date' (YYYY-MM-DD HH:II:SS) para 'Br date' (DD/MM/YYYY HH:II:SS)
+function getBrDate(dateString, separator = ' às ') {
+    var p1 = dateString.split(" "); // Separa data e hora
+    var p2 = p1[0].split("-"); // Separa partes da data
+    return `${p2[2]}/${p2[1]}/${p2[0]}${separator}${p1[1]}`; // Remonta partes da data e hora
+}
+
+/**
+ * Sanitiza a string, removendo caracteres perigosos, espaços desnecessários, etc...
+ * Por padrão (stripTags = true), remove tags HTML e scripts.
+ */
+function sanitizeString(stringValue, stripTags = true) {
+    
+    // Remover todas as tags HTML
+    if (stripTags) stringValue = stringValue.replace(/<[^>]*>?/gm,'');
+
+    // Quebras de linha viram '<br>' e remove espaçis extras
+    stringValue = stringValue.replace(/\n/g, '<br>').trim();
+
+    // Remove espaços antes e depois, se existir
+    return stringValue.trim();
+}

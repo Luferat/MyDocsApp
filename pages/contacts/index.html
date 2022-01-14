@@ -2,30 +2,30 @@
 
     <h2>Faça contato</h2>
 
-    <p>Preencha os campos abaixo para entrar em contato com a equipe do aplicativo.</p>
-
-    <p class="red center small">Todos os campos são obrigatórios.</p>
-
     <form action="#" id="contact" name="contact" method="post">
+
+        <p>Preencha os campos abaixo para entrar em contato com a equipe do aplicativo.</p>
+
+        <p class="red center small">Todos os campos são obrigatórios.</p>
 
         <p>
             <label for="contactName">Seu nome:</label>
-            <input type="text" name="contact-name" id="contactName" required minlength="3" class="field valid" value="">
+            <input type="text" name="contact-name" id="contactName" required minlength="3" class="field valid" value="Joca da Silva">
         </p>
 
         <p>
             <label for="contactEmail">Seu e-mail:</label>
-            <input type="email" name="contact-email" id="contactEmail" required class="field valid" value="">
+            <input type="email" name="contact-email" id="contactEmail" required class="field valid" value="joca@silva.com">
         </p>
 
         <p>
             <label for="contactSubject">Assunto:</label>
-            <input type="text" name="contact-subject" id="contactSubject" required minlength="3" class="field valid" value="">
+            <input type="text" name="contact-subject" id="contactSubject" required minlength="3" class="field valid" value="Teste do Joca">
         </p>
 
         <p>
             <label for="contactMessage">Mensagem:</label>
-            <textarea name="contact-message" id="contactMessage" required minlength="5" class="field valid"></textarea>
+            <textarea name="contact-message" id="contactMessage" required minlength="5" class="field valid">Mesagem do Joca</textarea>
         </p>
 
         <p>
@@ -35,7 +35,7 @@
 
     </form>
 
-    <div id="feedback"></div> 
+    <div id="feedback"></div>
 
 </article>
 
@@ -44,10 +44,10 @@
     <p>Conheça nossas redes sociais e outras formas de contato.</p>
     <div class="contact-list">
         <a href="https://wa.me/5521987654321" target="_blank" title="Nosso WhatsApp.">
-            <span>Whatsapp</span>
+            <i class="fab fa-whatsapp-square fa-fw"></i><span>Whatsapp</span>
         </a>
         <a href="maito://contato@mydocsapp.com" target="_blank" title="Nosso e-mail.">
-            <span>E-mail</span>
+            <i class="fas fa-envelope-square fa-fw"></i><span>E-mail</span>
         </a>
         <a href="https://github.com/Luferat" target="_blank" title="Meu GitHub">
             <i class="fab fa-github-square fa-fw"></i><span>GitHub</span>
