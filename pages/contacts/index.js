@@ -162,7 +162,12 @@ if (typeof sendForm !== 'function') {
  */
 if (typeof inputFilters !== 'function') {
     window.inputFilters = function () {
-        console.log('Tecla levantada');
+        
+        // Remove quaisquer espaços no começo do campo.
+        this.value = this.value.trimStart();
+
+        // Remove espaços duplicados.
+        this.value = this.value.replace(/\s{2,}/g , ' ');
     }
 }
 
@@ -175,7 +180,7 @@ el('#contact').onsubmit = sendForm;
 
 /**
  * Processa cada campo do formulário ao ser preenchido.
- * Chama 'inputfilters' quando uma tecla é solta.
+ * Chama 'inputFilters' quando uma tecla é solta.
  */
 var inputs = el('#contact').elements;
 for (let i = 0; i < inputs.length; i++) {
