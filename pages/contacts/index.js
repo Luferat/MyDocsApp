@@ -57,6 +57,51 @@ if (typeof sendForm !== 'function') {
          */
         console.log('Salvei isso no banco de dados --> ', contact);
 
+        /**
+         * Faz a conexão com a API REST contendo o banco de dados usando o
+         * método HTTP 'POST' e postando os dados no 'body' do documento 
+         * enviado, formatado como um JSON.
+         */
+        fetch(`${config.apiURL}contacts`, {
+            method: "POST",
+            body: JSON.stringify(contact),
+            headers: { "Content-type": "application/json; charset=UTF-8" }
+        })
+
+            // Resposta do 'fetch' --> Contato enviado.
+            .then(response => {
+
+                // Se falhou por algum motivo...
+                if (!response.ok) {
+
+                    // Formata mensagem de erro na view.
+                    el('#feedback').innerHTML = `
+                        <h2>Olá!</h2>
+                        <p class="red">Algo deu errado e não foi possível enviar seu contato.</p>
+                        <p class="red">por favor, tente mais tarde.</p>
+                        <p><em>Obrigado!</em></p>
+                    `;
+
+                    // Se deu tudo certo...
+                } else {
+
+                    // Obtém só o primeiro nome do remetente.
+                    var name = contact.name.split(' ')[0];
+
+                    // Mensagem de saída para o usuário (feedback)
+                    el('#feedback').innerHTML = `
+                        <h3>Olá ${name}!</h3>
+                        <p>Seu contato foi enviado com sucesso.</p>
+                        <p><em>Obrigado...</em></p>
+                    `;
+                }
+            })
+
+            // Resposta do 'fetch' --> Falha ao enviar contato.
+            .catch(error => {
+                console.error(`Oooops! Algo deu muito errado: ${error}.`);
+            })
+
         // Limpa campos do formulário para permitir novos envios.
         el('#contactName').value = '';
         el('#contactEmail').value = '';
@@ -66,15 +111,7 @@ if (typeof sendForm !== 'function') {
         // Oculta o formulário.
         el('#contact').style.display = 'none';
 
-        // Obtém só o primeiro nome do remetente.
-        var name = contact.name.split(' ')[0];
-
-        // Mensagem de saída para o usuário (feedback)
-        el('#feedback').innerHTML = `
-        <h3>Olá ${name}!</h3>
-        <p>Seu contato foi enviado com sucesso.</p>
-        <p><em>Obrigado...</em></p>
-        `;
+        // Mostra feedback
         el('#feedback').style.display = 'block';
 
         // Retorna sem fazer mais nada. Evita ação do HTML.
@@ -86,7 +123,6 @@ if (typeof sendForm !== 'function') {
 /**
  * Processa digitação nos campos.
  */
-
 if (typeof inputfilters !== 'function') {
     window.inputfilters = function () {
         console.log('tecla levantada');

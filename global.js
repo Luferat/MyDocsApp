@@ -26,7 +26,10 @@ var config = {
     separator: '.:.',
 
     // Define o logotipo do site
-    appLogo: 'assets/img/logo_64.png'
+    appLogo: 'assets/img/logo_64.png',
+
+    // URL da API (back-end). Não esqueça "/" no final. 
+    apiURL: 'http://localhost:3300/'
 }
 
 /**

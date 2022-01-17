@@ -320,6 +320,13 @@ div.footer-bottom a i {
     background: rgb(226, 252, 255);
 }
 
+.main>article>h2:first-child {
+    margin-top: 0;
+    padding: 1rem;
+    background: #94ecfc;
+    border-radius: 0 0 .4rem .4rem;
+}
+
 @media (min-width: 768px) {
     .main {
         flex-direction: row;
