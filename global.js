@@ -1,40 +1,44 @@
-/** global.js
+/** ./global.js
  * 
  * Este é o JavaScript principal do aplicativo. 
  * Todo o controle do aplicativo é realizado por este arquivo.
  * 
- * Por Luferat --> http://github.com/Luferat 
+ * By Luferat -   - http://github.com/Luferat 
+ * MIT License - https://opensource.org/licenses/MIT
  */
 
 /**
  * Aqui vamos fazer algumas predefinições importantes para o funcionamento do
  * aplicativo de forma mais dinâmica. Você pode implementar novas informações,
  * ampliando 'config'.
+ * 
+ * No futuro, essas informações serão armazenadas e obtidas do banco de dados.
  */
 var config = {
-    
-    // Largura mínima em pixels para troca do modo responsivo de small para middle.
+
+    // Largura mínima em pixels para troca do modo responsivo - small / middle.
     clientWidth: 768,
 
     // Nome do aplicativo que será usado na tag <title>...</title>.
+    // Também pode ser usado em outras seções como no <header>...</header>.
     appName: 'My.Docs.App',
 
-    // Slogan do aplicativo.
+    // Slogan do aplicativo que será usado na tag <title>...</title>.
     appSlogan: 'Seus documentos em nossas mãos.',
 
-    // Separador usado na tag <title>...</title>.
+    // Separador que será usado na tag <title>...</title>.
     separator: '.:.',
 
-    // Define o logotipo do site
+    // Logotipo do site.
     appLogo: 'assets/img/logo_64.png',
 
-    // URL da API (back-end). Não esqueça "/" no final. 
+    // URL da API REST (back-end). Não esqueça da "/" no final. 
     apiURL: 'http://localhost:3300/'
 }
 
 /**
  * Obtém nome da página que está sendo acessada, do 'localStorage'.
- * Estude '404.html' para mais detalhes.
+ * Estude './404.html' para mais detalhes.
  */
 let path = localStorage.getItem('path');
 
@@ -143,7 +147,7 @@ function hideMenu() {
 function changeRes() {
 
     // Se a resolução é maior que 767 pixels, sempre mostra o menu.
-    if (document.documentElement.clientWidth > config.clientWidth -1) showMenu();
+    if (document.documentElement.clientWidth > config.clientWidth - 1) showMenu();
 
     // Se a resolução é menor, sempre oculta o menu.
     else hideMenu();
@@ -349,9 +353,9 @@ function getBrDate(dateString, separator = ' às ') {
  * Por padrão (stripTags = true), remove tags HTML e scripts.
  */
 function sanitizeString(stringValue, stripTags = true) {
-    
+
     // Remover todas as tags HTML
-    if (stripTags) stringValue = stringValue.replace(/<[^>]*>?/gm,'');
+    if (stripTags) stringValue = stringValue.replace(/<[^>]*>?/gm, '');
 
     // Quebras de linha viram '<br>' e remove espaçis extras
     stringValue = stringValue.replace(/\n/g, '<br>').trim();
