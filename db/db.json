@@ -1,67 +1,21 @@
 {
   "contacts": [
     {
-      "name": "Joca da Silva",
-      "email": "joca@silva.com",
-      "subject": "Teste do Joca",
-      "message": "Mesagem do Joca",
-      "date": "2022-01-17 14:34:03",
+      "name": "contato",
+      "email": "fff@sdfdsf",
+      "subject": "Assunto joca",
+      "message": "cxzvcxzvcxzvcxzv",
+      "date": "2022-01-18 14:49:11",
       "status": "recebido",
       "id": 1
-    },
-    {
-      "name": "Joca da Silva",
-      "email": "joca@silva.com",
-      "subject": "Teste do Joca",
-      "message": "Mesagem do Joca",
-      "date": "2022-01-17 14:34:14",
-      "status": "recebido",
-      "id": 2
-    },
-    {
-      "name": "Joca da Silva",
-      "email": "joca@silva.com",
-      "subject": "Teste do Joca",
-      "message": "Mesagem do Joca",
-      "date": "2022-01-17 14:34:25",
-      "status": "recebido",
-      "id": 3
-    },
-    {
-      "name": "Joca da Silva",
-      "email": "joca@silva.com",
-      "subject": "Teste do Joca",
-      "message": "Mesagem do Joca",
-      "date": "2022-01-17 14:44:27",
-      "status": "recebido",
-      "id": 4
-    },
-    {
-      "name": "Joca da Silva",
-      "email": "joca@silva.com",
-      "subject": "Teste do Joca",
-      "message": "Mesagem do Joca",
-      "date": "2022-01-17 14:45:21",
-      "status": "recebido",
-      "id": 5
-    },
-    {
-      "name": "Joca sa Silva",
-      "email": "joca@silva.com",
-      "subject": "Teste do Joca",
-      "message": "dfsadfsdaf dsaf",
-      "date": "2022-01-17 16:42:12",
-      "status": "recebido",
-      "id": 6
-    },
-    {
-      "name": "Setembrino Trocatapas",
-      "email": "set@brino.com",
-      "subject": "Teste de mensagem do Setembrino",
-      "message": "Setembrino que falar.<br>Setembrino que falar.<br>Setembrino que falar.<br>Setembrino que falar.<br>Setembrino que falar.<br>Setembrino que falar.<br>Setembrino que falar.",
-      "date": "2022-01-17 16:43:42",
-      "status": "recebido",
-      "id": 7
     }
-  ]
+  ],
+  "config": {
+    "clientWidth": "768",
+    "appName": "My.Docs.App",
+    "appSlogan": "Seus documentos em nossas mãos.",
+    "separator": ".:.",
+    "appLogo": "assets/img/logo_64.png",
+    "copyright": "2021 Joca da Silva"
+  }
 }

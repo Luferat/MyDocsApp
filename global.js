@@ -7,83 +7,125 @@
  * MIT License - https://opensource.org/licenses/MIT
  */
 
+// URL da API REST (back-end). Não esqueça da "/" no final. 
+const apiURL = 'http://localhost:3300/';
+
 /**
- * Aqui vamos fazer algumas predefinições importantes para o funcionamento do
- * aplicativo de forma mais dinâmica. Você pode implementar novas informações,
- * ampliando 'config'.
- * 
- * No futuro, essas informações serão armazenadas e obtidas do banco de dados.
+ * Variável que armazena as configurações gerais do aplicativo, obtidas do 
+ * servidor (banco de dados) via API REST (JSON).
  */
-var config = {
+var config = {}
 
-    // Largura mínima em pixels para troca do modo responsivo - small / middle.
-    clientWidth: 768,
+/**
+ * Promessa de acesso ao servidor para obter os dados de configuração do site.
+ */
+var getConfig = new Promise((resolve, reject) => {
 
-    // Nome do aplicativo que será usado na tag <title>...</title>.
-    // Também pode ser usado em outras seções como no <header>...</header>.
-    appName: 'My.Docs.App',
+    // Executando a promessa
+    fetch(apiURL + 'config')
 
-    // Slogan do aplicativo que será usado na tag <title>...</title>.
-    appSlogan: 'Seus documentos em nossas mãos.',
+        // Se deu certo -> Promessa cumprida.
+        .then((resolveData) => {
 
-    // Separador que será usado na tag <title>...</title>.
-    separator: '.:.',
+            // Extraindo os dados da configuração da promessa.
+            resolveData.json().then((data) => {
 
-    // Logotipo do site.
-    appLogo: 'assets/img/logo_64.png',
+                // Conclui a promessa "cumprida".
+                resolve(data);
+            });
+        })
 
-    // URL da API REST (back-end). Não esqueça da "/" no final. 
-    apiURL: 'http://localhost:3300/'
+        // Não deu certo ->  Promessa falhou.
+        .catch((error) => {
+
+            // Conclui a promessa "não cumprida".
+            reject(error);
+        })
+});
+
+/**
+ * Cobrando a promessa.
+ */
+getConfig
+
+    // Se a promessa foi cumprida, já temos os dados de 'config'.
+    .then((data) => {
+
+        // Recebe os dados de 'config' e armazena na variável config.
+        config = data
+
+        // Executa aplicativo principal.
+        mainApp();
+    })
+
+    // Se apromessa não foi cumprida, temos uma falha grave.
+    .catch((error) => {
+        el('#content').innerHTML = `
+            <h2 class="red">Ooooops!</h2>
+            <p class="red">Algo deu muito errado mesmo!</p>
+            <p class="red">Por favor, tente mais tarde...</p>
+        `;
+        console.error(error);
+    });
+
+/**
+ * Aplicativo principal do site.
+ */
+function mainApp() {
+    /**
+     * Obtém nome da página que está sendo acessada, do 'localStorage'.
+     * Estude './404.html' para mais detalhes.
+     */
+    let path = localStorage.getItem('path');
+
+    // Se cliente acessou uma página específica...
+    if (path) {
+
+        // Limpa o 'localStorage'.
+        localStorage.removeItem('path');
+
+        // Acessa a página solicitada.
+        loadPage(path);
+
+        // Se não solicitou uma página específica...
+    } else {
+
+        // Carrega a página inicial.
+        loadPage('home');
+    }
+
+    /**
+     * Força o fechamento do menu na incialização do aplicativo com 'hideMenu()' e
+     * monitora as dimensões da view. Executa 'changeRes()' se ocorrerem mudanças.
+     *   Referências: https://www.w3schools.com/jsref/event_onresize.asp
+     */
+    hideMenu();
+    window.onresize = changeRes;
+
+    /**
+     * Monitora cliques nas tags <a>...</a> e executa 'routerLink()' se ocorrer.
+     *   Referências: https://www.w3schools.com/js/js_loop_for.asp
+     */
+    var links = els('a');
+    for (var i = 0; i < links.length; i++) {
+        links[i].onclick = routerLink;
+    }
+
+    /**
+     * Define o logotipo conforme 'config'
+     */
+    el('#logo').setAttribute('src', config.appLogo);
+
+    /**
+     * Define o título do site.
+     */
+    el('#siteName').innerHTML = config.appName;
+
+    /**
+     * Define mensagem de copyright conforme 'config'.
+     */
+    el('.license').innerHTML = '<i class="fab fa-creative-commons fa-fw"></i> ' + config.copyright;
 }
-
-/**
- * Obtém nome da página que está sendo acessada, do 'localStorage'.
- * Estude './404.html' para mais detalhes.
- */
-let path = localStorage.getItem('path');
-
-// Se cliente acessou uma página específica...
-if (path) {
-
-    // Limpa o 'localStorage'.
-    localStorage.removeItem('path');
-
-    // Acessa a página solicitada.
-    loadPage(path);
-
-    // Se não solicitou uma página específica...
-} else {
-
-    // Carrega a página inicial.
-    loadPage('home');
-}
-
-/**
- * Força o fechamento do menu na incialização do aplicativo com 'hideMenu()' e
- * monitora as dimensões da view. Executa 'changeRes()' se ocorrerem mudanças.
- *   Referências: https://www.w3schools.com/jsref/event_onresize.asp
- */
-hideMenu();
-window.onresize = changeRes;
-
-/**
- * Monitora cliques nas tags <a>...</a> e executa 'routerLink()' se ocorrer.
- *   Referências: https://www.w3schools.com/js/js_loop_for.asp
- */
-var links = els('a');
-for (var i = 0; i < links.length; i++) {
-    links[i].onclick = routerLink;
-}
-
-/**
- * Define o logotipo conforme 'config'
- */
-el('#logo').setAttribute('src', config.appLogo);
-
-/**
- * Define o título do site.
- */
-el('#siteName').innerHTML = config.appName;
 
 /*******************************
  * Funções Específicas do tema *

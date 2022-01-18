@@ -82,7 +82,7 @@ if (typeof sendForm !== 'function') {
          *   Referências:
          *     https://github.com/typicode/json-server
          */
-        fetch(`${config.apiURL}contacts`, {
+        fetch(`${apiURL}contacts`, {
             method: "POST",
             body: JSON.stringify(contact),
             headers: { "Content-type": "application/json; charset=UTF-8" }
@@ -162,27 +162,31 @@ if (typeof sendForm !== 'function') {
  */
 if (typeof inputFilters !== 'function') {
     window.inputFilters = function () {
-        
+
         // Remove quaisquer espaços no começo do campo.
         this.value = this.value.trimStart();
 
         // Remove espaços duplicados.
-        this.value = this.value.replace(/\s{2,}/g , ' ');
+        this.value = this.value.replace(/\s{2,}/g, ' ');
     }
 }
 
-/**
- * Processa o envio do formulário.
- *   Referências:
- *     https://www.w3schools.com/jsref/event_onsubmit.asp
- */
-el('#contact').onsubmit = sendForm;
+// Se o formulário já existe.
+if (el('#contact')) {
 
-/**
- * Processa cada campo do formulário ao ser preenchido.
- * Chama 'inputFilters' quando uma tecla é solta.
- */
-var inputs = el('#contact').elements;
-for (let i = 0; i < inputs.length; i++) {
-    inputs[i].onkeyup = inputFilters;
+    /**
+     * Processa o envio do formulário.
+     *   Referências:
+     *     https://www.w3schools.com/jsref/event_onsubmit.asp
+     */
+    el('#contact').onsubmit = sendForm;
+
+    /**
+     * Processa cada campo do formulário ao ser preenchido.
+     * Chama 'inputFilters' quando uma tecla é solta.
+     */
+    var inputs = el('#contact').elements;
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].onkeyup = inputFilters;
+    }
 }
