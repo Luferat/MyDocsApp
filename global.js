@@ -11,65 +11,41 @@
 const apiURL = 'http://localhost:3300/';
 
 /**
- * Variável que armazena as configurações gerais do aplicativo, obtidas do 
+ * Super global que armazena as configurações gerais do aplicativo, obtidas do 
  * servidor (banco de dados) via API REST (JSON).
  */
 var config = {}
 
 /**
  * Promessa de acesso ao servidor para obter os dados de configuração do site.
+ * O JavaScript do site só pode ser executado se os valores de 'config' foram
+ * recebidos do servidor.
  */
-var getConfig = new Promise((resolve, reject) => {
+fetch(apiURL + 'config')
 
-    // Executando a promessa
-    fetch(apiURL + 'config')
+    // Se deu certo -> Promessa cumprida.
+    .then((resolveData) => {
 
-        // Se deu certo -> Promessa cumprida.
-        .then((resolveData) => {
+        // Extraindo os dados da configuração da promessa.
+        resolveData.json().then((data) => {
 
-            // Extraindo os dados da configuração da promessa.
-            resolveData.json().then((data) => {
+            // Recebe os dados de 'config' e armazena na variável config.
+            config = data;
 
-                // Conclui a promessa "cumprida".
-                resolve(data);
-            });
-        })
-
-        // Não deu certo ->  Promessa falhou.
-        .catch((error) => {
-
-            // Conclui a promessa "não cumprida".
-            reject(error);
-        })
-});
-
-/**
- * Cobrando a promessa.
- */
-getConfig
-
-    // Se a promessa foi cumprida, já temos os dados de 'config'.
-    .then((data) => {
-
-        // Recebe os dados de 'config' e armazena na variável config.
-        config = data
-
-        // Executa aplicativo principal.
-        mainApp();
+            // Executa aplicativo principal.
+            mainApp();
+        });
     })
 
-    // Se apromessa não foi cumprida, temos uma falha grave.
+    // Não deu certo ->  Promessa falhou.
     .catch((error) => {
-        el('#content').innerHTML = `
-            <h2 class="red">Ooooops!</h2>
-            <p class="red">Algo deu muito errado mesmo!</p>
-            <p class="red">Por favor, tente mais tarde...</p>
-        `;
+
+        // Conclui a promessa "não cumprida".
         console.error(error);
     });
 
 /**
- * Aplicativo principal do site.
+ * Aplicativo principal.
  */
 function mainApp() {
     /**
