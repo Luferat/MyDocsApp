@@ -22,26 +22,31 @@ var config = {}
  * recebidos do servidor.
  */
 fetch(apiURL + 'config')
-
-    // Se deu certo -> Promessa cumprida.
     .then((resolveData) => {
 
-        // Extraindo os dados da configuração da promessa.
-        resolveData.json().then((data) => {
+        // Se deu certo -> Promessa cumprida.
+        if (resolveData.ok) {
 
-            // Recebe os dados de 'config' e armazena na variável config.
-            config = data;
+            // Extraindo os dados da configuração da promessa.
+            resolveData.json().then((data) => {
 
-            // Executa aplicativo principal.
-            mainApp();
-        });
-    })
+                // Recebe os dados de 'config' e armazena na variável config.
+                config = data;
 
-    // Não deu certo ->  Promessa falhou.
-    .catch((error) => {
+                // Executa aplicativo principal.
+                mainApp();
+            });
 
-        // Conclui a promessa "não cumprida".
-        console.error(error);
+            // Não deu certo -> Promessa não cumprida.
+        } else {
+            el('#content').innerHTML = `
+                <article>
+                    <h3 class="red">Ooooops!</h3>
+                    <p class="red">Algo deu muito errado mesmo!</p>
+                    <p class="red">Por favor, tente mais tarde...</p>
+                </article>
+            `;
+        }
     });
 
 /**
@@ -53,6 +58,9 @@ function mainApp() {
      * Estude './404.html' para mais detalhes.
      */
     let path = localStorage.getItem('path');
+
+    // Lista de redes sociais no rodapé.
+    getSocialList('.social');
 
     // Se cliente acessou uma página específica...
     if (path) {
@@ -294,7 +302,7 @@ async function getFile(filePath, element = '') {
     // Se declarou um elemento, envia os dados para o innerHTML do elemento.
     else el(element).innerHTML = content;
 
-    // Retorna com true se deu certo
+    // Retorna com true se deu certo.
     return true;
 }
 
@@ -380,4 +388,67 @@ function sanitizeString(stringValue, stripTags = true) {
 
     // Remove espaços antes e depois, se existir
     return stringValue.trim();
+}
+
+/**
+ * Obtém uma lista das redes sociais do aplicativo via API. * 
+ *   'element' define onde a lista será exibida.
+ *   'fullList' se 'true', lista todos os contatos
+ *              se 'false', não lista os contatos com "nofooter": true
+ *
+ *    Por default, 'fullList' = 'true'
+ * 
+ *   Exemplos:
+ *     getSocialList('.social') --> Gera a lista no rodapé.
+ *     getSocialList('.contact-list', true); --> Gera a lista na aside.
+ */
+function getSocialList(element, fullList = false) {
+
+    // View que exibe a lista.
+    var socialList = '';
+
+    // Obtém a lista do servidor (API)
+    fetch(apiURL + 'social')
+        .then((socialData) => {
+
+            // Se deu certo...
+            if (socialData.ok) {
+
+                // Obtém os dados e armazena em 'data'.
+                socialData.json().then((data) => {
+
+                    // Itera 'data'
+                    for (let i = 0; i < data.length; i++) {
+
+                        // Se é para exibir a lista completa...
+                        if (fullList) {
+
+                            // Monta a view.
+                            socialList += `
+                                <a href="${data[i].href}" target="_blank" title="Meu ${data[i].name}">
+                                    <i class="fab ${data[i].icon} fa-fw"></i><span>${data[i].name}</span>
+                                </a>                        
+                            `;
+
+                            // Se é para exibir so redes sociais...
+                        } else {
+
+                            // Descarta o que não é rede social ("nofooter": true)
+                            if (!data[i].nofooter) {
+
+                                // Monta a view.
+                                socialList += `
+                                    <a href="${data[i].href}" target="_blank" title="Meu ${data[i].name}">
+                                        <i class="fab ${data[i].icon} fa-fw"></i><span>${data[i].name}</span>
+                                    </a>                        
+                                `;
+                            }
+                        }
+                    }
+
+                    // Exibe a view no elemento selecionado.
+                    el(element).innerHTML = socialList;
+                })
+            }
+        });
 }

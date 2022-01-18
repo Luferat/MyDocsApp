@@ -81,7 +81,7 @@ if (typeof sendForm !== 'function') {
          *   Referências:
          *     https://github.com/typicode/json-server
          */
-        fetch(`${apiURL}contacts`, {
+        fetch(apiURL + 'contacts', {
             method: "POST",
             body: JSON.stringify(contact),
             headers: { "Content-type": "application/json; charset=UTF-8" }
@@ -97,7 +97,7 @@ if (typeof sendForm !== 'function') {
                     el('#feedback').innerHTML = `
                         <h2>Olá!</h2>
                         <p class="red">Algo deu errado e não foi possível enviar seu contato.</p>
-                        <p class="red">por favor, tente mais tarde.</p>
+                        <p class="red">Por favor, tente mais tarde.</p>
                         <p><em>Obrigado!</em></p>
                     `;
 
@@ -187,4 +187,7 @@ if (el('#contact')) {
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].onkeyup = inputFilters;
     }
+
+    // Lista de redes sociais na barra lateral
+    getSocialList('.contact-list', true);
 }

@@ -1,24 +1,5 @@
 {
-  "contacts": [
-    {
-      "name": "contato",
-      "email": "fff@sdfdsf",
-      "subject": "Assunto joca",
-      "message": "cxzvcxzvcxzvcxzv",
-      "date": "2022-01-18 14:49:11",
-      "status": "recebido",
-      "id": 1
-    },
-    {
-      "name": "contato",
-      "email": "fff@sdfdsf",
-      "subject": "fff",
-      "message": "xzcvxzcvxczv",
-      "date": "2022-01-18 15:23:09",
-      "status": "recebido",
-      "id": 2
-    }
-  ],
+  "contacts": [],
   "config": {
     "clientWidth": "768",
     "appName": "My.Docs.App",
@@ -26,5 +7,45 @@
     "separator": ".:.",
     "appLogo": "assets/img/logo_64.png",
     "copyright": "2021 Joca da Silva"
-  }
+  },
+  "social": [
+    {
+      "name": "(21) 9876-54321",
+      "href": "https://wa.me/5521987654321",
+      "icon": "fa-whatsapp-square",
+      "nofooter": true
+    },
+    {
+      "name": "WhatsApp",
+      "href": "https://wa.me/5521987654321",
+      "icon": "fa-whatsapp-square",
+      "nofooter": true
+    },
+    {
+      "name": "E-mail",
+      "href": "maito://contato@mydocsapp.com",
+      "icon": "fa-envelope-square",
+      "nofooter": true
+    },
+    {
+      "name": "GitHub",
+      "href": "https://github.com/Luferat",
+      "icon": "fa-github-square"
+    },
+    {
+      "name": "LinkedIn",
+      "href": "https://linkedin.com/Luferat",
+      "icon": "fa-linkedin"
+    },
+    {
+      "name": "Facebook",
+      "href": "https://facebook.com/Luferat",
+      "icon": "fa-facebook-square"
+    },
+    {
+      "name": "Instagram",
+      "href": "https://instagram.com/Luferat",
+      "icon": "fa-instagram-square"
+    }
+  ]
 }
