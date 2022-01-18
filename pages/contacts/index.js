@@ -23,12 +23,8 @@ setTitle('Faça contato');
  */
 if (typeof sendForm !== 'function') {
 
-    console.log('Criando função "sendForm"...');
-
-    // Função que processa o formulario
+    // Função que processa o formulário
     window.sendForm = function () {
-
-        console.log('Enviando contato...');
 
         // Obtém os campos do formulário e sanitiza.
         var contact = {
@@ -52,12 +48,15 @@ if (typeof sendForm !== 'function') {
                 // Reescreve o campo
                 el(`#contact${ucKey}`).value = '';
 
+                // Marca o formulário como vazio
                 empty = true;
             }
         }
+
+        // Se formulário vazio, não processa.
         if (empty) return false;
 
-        // Adiciona a data de envio e o status do contato
+        // Adiciona a data de envio e o status do contato.
         contact.date = getSystemDate();
         contact.status = 'recebido';
 
@@ -70,7 +69,7 @@ if (typeof sendForm !== 'function') {
          * 
          * Veja um exemplo à seguir...
          */
-        console.log('Salvei isso no banco de dados --> ', contact);
+        // console.log('Salvei isso no banco de dados --> ', contact);
 
         /**
          * Faz a conexão com a API REST contendo o banco de dados usando o
@@ -141,8 +140,7 @@ if (typeof sendForm !== 'function') {
          */
         return false;
     }
-} else
-    console.log('Função "sendForm" já existe na memória. Não vou criar...');
+}
 
 /**
  * Processa digitação nos campos.
@@ -171,7 +169,7 @@ if (typeof inputFilters !== 'function') {
     }
 }
 
-// Se o formulário já existe.
+// Se o formulário já existe...
 if (el('#contact')) {
 
     /**
