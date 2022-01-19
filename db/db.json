@@ -11,41 +11,41 @@
   "social": [
     {
       "name": "(21) 9876-54321",
-      "href": "https://wa.me/5521987654321",
-      "icon": "fa-whatsapp-square",
+      "href": "tel:5521987654321",
+      "icon": "fas fa-phone-square fa-fw",
       "nofooter": true
     },
     {
       "name": "WhatsApp",
       "href": "https://wa.me/5521987654321",
-      "icon": "fa-whatsapp-square",
+      "icon": "fab fa-whatsapp-square fa-fw",
       "nofooter": true
     },
     {
       "name": "E-mail",
       "href": "maito://contato@mydocsapp.com",
-      "icon": "fa-envelope-square",
+      "icon": "fas fa-envelope-square fa-fw",
       "nofooter": true
     },
     {
       "name": "GitHub",
       "href": "https://github.com/Luferat",
-      "icon": "fa-github-square"
+      "icon": "fab fa-github-square fa-fw"
     },
     {
       "name": "LinkedIn",
       "href": "https://linkedin.com/Luferat",
-      "icon": "fa-linkedin"
+      "icon": "fab fa-linkedin fa-fw"
     },
     {
       "name": "Facebook",
       "href": "https://facebook.com/Luferat",
-      "icon": "fa-facebook-square"
+      "icon": "fab fa-facebook-square fa-fw"
     },
     {
       "name": "Instagram",
       "href": "https://instagram.com/Luferat",
-      "icon": "fa-instagram-square"
+      "icon": "fab fa-instagram-square fa-fw"
     }
   ]
 }

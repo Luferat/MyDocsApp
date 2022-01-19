@@ -426,7 +426,7 @@ function getSocialList(element, fullList = false) {
                             // Monta a view.
                             socialList += `
                                 <a href="${data[i].href}" target="_blank" title="Meu ${data[i].name}">
-                                    <i class="fab ${data[i].icon} fa-fw"></i><span>${data[i].name}</span>
+                                    <i class="${data[i].icon}"></i><span>${data[i].name}</span>
                                 </a>                        
                             `;
 
@@ -439,7 +439,7 @@ function getSocialList(element, fullList = false) {
                                 // Monta a view.
                                 socialList += `
                                     <a href="${data[i].href}" target="_blank" title="Meu ${data[i].name}">
-                                        <i class="fab ${data[i].icon} fa-fw"></i><span>${data[i].name}</span>
+                                        <i class="${data[i].icon}"></i><span>${data[i].name}</span>
                                     </a>                        
                                 `;
                             }
